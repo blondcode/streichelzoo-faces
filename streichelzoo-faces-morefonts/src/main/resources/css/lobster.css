@@ -1,0 +1,10 @@
+@font-face {
+	font-family: 'Lobster';
+	font-style:  normal;
+	font-weight: 400;
+	src: url("#{resource['streichelzoo:fonts/Lobster/Lobster-Regular.eot']}");
+	src: url("#{resource['streichelzoo:fonts/Lobster/Lobster-Regular.eot']}?#iefix") format('embedded-opentype'),
+	     url("#{resource['streichelzoo:fonts/Lobster/Lobster-Regular.woff']}") format('woff'),
+	     url("#{resource['streichelzoo:fonts/Lobster/Lobster-Regular.ttf']}") format('truetype'),
+	     url("#{resource['streichelzoo:fonts/Lobster/Lobster-Regular.svg']}#Lobster") format('svg');
+}

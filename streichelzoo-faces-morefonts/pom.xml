@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>de.katerkamp.streichelzoo</groupId>
+		<artifactId>project</artifactId>
+		<version>0.92-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<groupId>de.katerkamp.streichelzoo</groupId>
+	<artifactId>streichelzoo-faces-morefonts</artifactId>
+	<version>0.92-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>Streichelzoo Faces More Fonts Module</name>
+	<description/>
+	<url>http://katerkamp.de/streichelzoo</url>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>yuicompressor-maven-plugin</artifactId>
+				<configuration>
+					<!-- just css there, direct instead of going through build dir assets -->
+					<sourceDirectory>${project.basedir}/src/main/resources/</sourceDirectory>
+					<outputDirectory>${project.build.outputDirectory}/META-INF/resources/streichelzoo</outputDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

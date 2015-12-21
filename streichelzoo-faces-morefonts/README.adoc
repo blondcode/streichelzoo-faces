@@ -1,0 +1,11 @@
+= Streichelzoo Faces Additional Fonts Module
+
+This modules provides miscellaneous interesting fonts from Google font
+repository.
+
+It provides a script which may be customized.
+
+----
+cd src/main/scripts
+./download-google-fonts.sh streichelzoo
+----

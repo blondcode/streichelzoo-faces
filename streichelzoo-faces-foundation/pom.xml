@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>de.katerkamp.streichelzoo</groupId>
+		<artifactId>project</artifactId>
+		<version>0.92-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<groupId>de.katerkamp.streichelzoo</groupId>
+	<artifactId>streichelzoo-faces-foundation</artifactId>
+	<version>0.92-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>Streichelzoo Faces Foundation Module</name>
+	<description/>
+	<url>http://katerkamp.de/streichelzoo</url>
+
+	<properties>
+		<bower.foundation-sites.version>~6.0.0</bower.foundation-sites.version>
+		<bower.motion-ui.version>~1.1.0</bower.motion-ui.version>
+		<bower.components.dir>${repo.dir}/frontend/bower_components/</bower.components.dir>
+		<gulp.src>${basedir}/src/main/resources/scss/**/*.scss</gulp.src>
+		<gulp.dest>${project.build.directory}/assets/css</gulp.dest>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-frontend</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${repo.dir}/frontend</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${basedir}/src/main/frontend</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy-js</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/assets/js</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${bower.components.dir}/jquery/dist</directory>
+									<includes>
+										<include>jquery.js</include>
+									</includes>
+								</resource>
+								<resource>
+									<directory>${bower.components.dir}/what-input/</directory>
+									<includes>
+										<include>what-input.js</include>
+									</includes>
+								</resource>
+								<resource>
+									<directory>${bower.components.dir}/foundation-sites/js</directory>
+									<includes>
+										<include>*.js</include>
+									</includes>
+								</resource>
+								<resource>
+									<directory>${bower.components.dir}/foundation-sites/dist</directory>
+									<includes>
+										<include>foundation.js</include>
+									</includes>
+								</resource>
+								<resource>
+									<directory>${basedir}/src/main/resources/js</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- css needs to be treated with autoprefixer, phase generate-resources -->
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>0.0.26</version>
+
+				<configuration>
+					<workingDirectory>${repo.dir}/frontend</workingDirectory>
+					<srcdir>${project.build.directory}/assets/css</srcdir>
+					<outputdir>${project.build.directory}/assets/cssprefix</outputdir>
+				</configuration>
+				<executions>
+					<execution>
+						<id>install node and npm</id>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+						<configuration>
+							<nodeVersion>v5.2.0</nodeVersion>
+							<npmVersion>3.3.12</npmVersion>
+						</configuration>
+					</execution>
+					<execution>
+						<id>npm install</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>install</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>bower install</id>
+						<goals>
+							<goal>bower</goal>
+						</goals>
+						<configuration>
+							<arguments>install</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>gulp sass</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>gulp</goal>
+						</goals>
+						<configuration>
+							<arguments>sass</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<!-- now all css and js is in target/assets -->
+			<!-- copy and optinally compress css and js -->
+			<plugin>
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>yuicompressor-maven-plugin</artifactId>
+				<configuration>
+					<sourceDirectory>${project.build.directory}/assets</sourceDirectory>
+					<outputDirectory>${project.build.outputDirectory}/META-INF/resources/streichelzoo</outputDirectory>
+				</configuration>
+			</plugin>
+			<!-- mvn fizzed-watcher:run -->
+			<plugin>
+				<groupId>com.fizzed</groupId>
+				<artifactId>fizzed-watcher-maven-plugin</artifactId>
+				<version>1.0.6</version>
+				<configuration>
+					<touchFile>${project.build.directory}/watcher.txt</touchFile>
+					<watches>
+						<watch>
+							<directory>${basedir}/src/main/resources/scss</directory>
+							<exclude>*.swp</exclude>
+						</watch>
+					</watches>
+					<goals>
+						<goal>compile</goal>
+					</goals>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+</project>

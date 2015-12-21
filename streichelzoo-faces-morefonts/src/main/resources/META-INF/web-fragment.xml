@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-fragment
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-fragment_3_0.xsd"
+	version="3.0"
+>
+	<name>patternfly-core</name>
+	<distributable />
+	<ordering>
+		<after>
+			<others />
+		</after>
+	</ordering>
+
+	<!-- Test Content-Type header with 
+	curl -I foobar.site//javax.faces.resource/streichelzoo/fonts/font-awesome.woff
+	-->
+	<mime-mapping>
+		<extension>eot</extension>
+		<mime-type>application/vnd.ms-fontobject</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>svg</extension>
+		<mime-type>image/svg+xml</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>ttf</extension>
+		<mime-type>application/font-sfnt</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>woff</extension>
+		<mime-type>application/font-woff</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>woff2</extension>
+		<mime-type>font/woff2</mime-type> 
+	</mime-mapping>
+	<mime-mapping>
+		<extension>otf</extension>
+		<mime-type>applications/font-sfnt</mime-type> <!-- same as ttf -->
+	</mime-mapping>
+</web-fragment>

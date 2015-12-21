@@ -1,0 +1,30 @@
+= Streichelzoo Faces Tests Module
+
+This module provides a mechanism to develop or customize styles and layouts.
+
+== Best Method
+
+Window 1: 
+
+ cd streichelzoo-faces-foundation
+ mvn fizzed-watcher:run
+
+Window 2:
+
+ cd streichelzoo-faces-tests
+ mvn jetty:run
+
+
+Then its possible to modify streichelzoo-faces-core/src/main/resources/scss/_settings.scss
+or streichelzoo-faces-tests/src/main/webapp/f-templates/blog.xhtml
+
+Result at: http://localhost:8888/test/f-templates/blog.jsf
+
+
+If all is ready, stop the running processes. Then
+
+ cd streichelzoo-faces
+ mvn -P wildfly clean verify install
+
+
+This creates a .war file in target of streichelzoo-faces-tests. Deploy.

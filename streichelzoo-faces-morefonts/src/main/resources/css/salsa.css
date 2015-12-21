@@ -1,0 +1,10 @@
+@font-face {
+	font-family: 'Salsa';
+	font-style:  normal;
+	font-weight: 400;
+	src: url("#{resource['streichelzoo:fonts/Salsa/Salsa-Regular.eot']}");
+	src: url("#{resource['streichelzoo:fonts/Salsa/Salsa-Regular.eot']}?#iefix") format('embedded-opentype'),
+	     url("#{resource['streichelzoo:fonts/Salsa/Salsa-Regular.woff']}") format('woff'),
+	     url("#{resource['streichelzoo:fonts/Salsa/Salsa-Regular.ttf']}") format('truetype'),
+	     url("#{resource['streichelzoo:fonts/Salsa/Salsa-Regular.svg']}#Salsa") format('svg');
+}

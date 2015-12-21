@@ -1,0 +1,12 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Stefan Katerkamp
+
+# TECHNOLOGY COLOPHON
+
+	Streichelzoo
+    HTML5, Sass
+    Wildfly, Java EE, JSF, Foundation, jQuery

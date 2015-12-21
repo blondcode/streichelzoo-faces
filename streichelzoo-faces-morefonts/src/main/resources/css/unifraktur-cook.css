@@ -1,0 +1,10 @@
+@font-face {
+	font-family: 'UnifrakturCook';
+	font-style:  normal;
+	font-weight: 700;
+	src: url("#{resource['streichelzoo:fonts/UnifrakturCook/UnifrakturCook-Bold.eot']}");
+	src: url("#{resource['streichelzoo:fonts/UnifrakturCook/UnifrakturCook-Bold.eot']}?#iefix") format('embedded-opentype'),
+	     url("#{resource['streichelzoo:fonts/UnifrakturCook/UnifrakturCook-Bold.woff']}") format('woff'),
+	     url("#{resource['streichelzoo:fonts/UnifrakturCook/UnifrakturCook-Bold.ttf']}") format('truetype'),
+	     url("#{resource['streichelzoo:fonts/UnifrakturCook/UnifrakturCook-Bold.svg']}#UnifrakturCook") format('svg');
+}

@@ -1,0 +1,10 @@
+@font-face {
+	font-family: 'Permanent Marker';
+	font-style:  normal;
+	font-weight: 400;
+	src: url("#{resource['streichelzoo:fonts/PermanentMarker/PermanentMarker.eot']}");
+	src: url("#{resource['streichelzoo:fonts/PermanentMarker/PermanentMarker.eot']}?#iefix") format('embedded-opentype'),
+	     url("#{resource['streichelzoo:fonts/PermanentMarker/PermanentMarker.woff']}") format('woff'),
+	     url("#{resource['streichelzoo:fonts/PermanentMarker/PermanentMarker.ttf']}") format('truetype'),
+	     url("#{resource['streichelzoo:fonts/PermanentMarker/PermanentMarker.svg']}#PermanentMarker") format('svg');
+}

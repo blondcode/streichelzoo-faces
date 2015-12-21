@@ -1,0 +1,22 @@
+{
+  "name": "streichelzoo-faces-foundation",
+  "version": "1.0.0",
+  "authors": [
+    "Stefan Katerkamp <stefan@katerkamp.de>"
+  ],
+  "description": "Required components for streichelzoo faces.",
+  "license": "MIT",
+  "homepage": "http://katerkamp.de/streichelzoo",
+  "dependencies": {
+    "foundation-sites": "${bower.foundation-sites.version}",
+    "motion-ui": "${bower.motion-ui.version}"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "private": true
+}

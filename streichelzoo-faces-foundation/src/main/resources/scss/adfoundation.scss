@@ -1,0 +1,18 @@
+// Asciidoc foundation and Foundation Combo
+
+//@import 'foundation/settings';
+
+@import 'foundation';
+@include foundation-everything;
+
+// Asciidoc
+@import "adsettings/foundation";
+@import "adcomponents/asciidoc";
+@import "adcomponents/awesome-icons";
+
+.literalblock,
+.listingblock {
+  & pre {
+    background: $pre-bg;
+  }
+}

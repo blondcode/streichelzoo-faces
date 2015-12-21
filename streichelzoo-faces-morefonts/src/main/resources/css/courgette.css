@@ -1,0 +1,10 @@
+@font-face {
+	font-family: 'Courgette';
+	font-style:  normal;
+	font-weight: 400;
+	src: url("#{resource['streichelzoo:fonts/Courgette/Courgette-Regular.eot']}");
+	src: url("#{resource['streichelzoo:fonts/Courgette/Courgette-Regular.eot']}?#iefix") format('embedded-opentype'),
+	     url("#{resource['streichelzoo:fonts/Courgette/Courgette-Regular.woff']}") format('woff'),
+	     url("#{resource['streichelzoo:fonts/Courgette/Courgette-Regular.ttf']}") format('truetype'),
+	     url("#{resource['streichelzoo:fonts/Courgette/Courgette-Regular.svg']}#Courgette") format('svg');
+}

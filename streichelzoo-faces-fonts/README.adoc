@@ -1,0 +1,5 @@
+= Streichelzoo Faces Fonts Module
+
+This modules downloads and packages important fonts,
+in particular Font Awesome Font.
+

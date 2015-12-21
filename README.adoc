@@ -1,0 +1,59 @@
+= Streichelzoo Faces Modules and Starter Template
+
+This is a starter project to use Foundation for Sites 6 along with Java Server Faces,
+is more or less a mavenized Foundation for sites template.
+
+Everything is wrapped into a Maven project. The frontend code gets downloaded and
+compiled with npm, bower and gulp. All triggered by Maven. 
+
+For rapid development of web pages and on the fly editing for Sass and XHTML pages
+a watcher plugin is provided together with a Jetty Web Server.
+
+It also is possible to use Asciidoc (Asciidoctor) files and transform then into
+XHTML. The adfoundation.css is Foundation 6 for Asciidoctor.
+
+Finally run create the war file and deploy this to your
+JavaEE container such as Wildfly.
+
+== Setup
+
+First download the project:
+
+ git clone https://github.com/skaterkamp/streichelzoo-faces.git
+
+Then
+ 
+ cd streichelzoo-faces
+ mvn install
+
+== Web Page Development
+
+To see the result
+
+ cd streichelzoo-faces-template
+ mvn jetty:run
+
+and open _http://localhost:8888 in a browser.
+
+Edit xhtml in src/main/webapp and reload the page and see changes immediately.
+
+If you wish to modify CSS on-the-fly, leave Jetty running
+and in some other window:
+
+ cd streichelzoo-faces-foundation
+ mvn fizzed-watcher:run
+
+Then its possible to modify scss files like
+streichelzoo-faces-core/src/main/resources/scss/_settings.scss.
+Wait a few seconds for the recompile to finish
+and reload the page in the browser.
+
+
+== Deployment
+
+To create a war file for Wildfly:
+
+ cd streichelzoo-faces-template
+ mvn -P wilfly clean verify install
+
+The result is in the /target directory.

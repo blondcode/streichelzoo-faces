@@ -1,0 +1,46 @@
+<!DOCTYPE html [
+	<!ENTITY copy "&#169;"> 
+	<!ENTITY nbsp "&#160;"> 
+	<!ENTITY bull "&#8226;"> 
+	<!ENTITY euro "&#8364;"> 
+	]>
+	<f:view
+		xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:f="http://xmlns.jcp.org/jsf/core"
+		xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+		<f:loadBundle basename="bundles.messages" var="msgs"/>
+
+		<html lang="de-DE" class="no-js"> 
+
+			<h:head>
+				<meta charset="utf-8"/>
+				<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+				<meta name="viewport" content="width=device-width,initial-scale=1.0"/> 	
+				<title>Streichelzoo | <ui:insert name="windowTitle"/></title>
+
+				<meta name="generator" content="Streichelzoo Default Layout" />
+
+				<meta name="keywords" content="#{meta_keywords}"/>
+				<meta name="description" content="#{meta_description}"/>
+				<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+				<!-- 3 verschiedene Arten der Einbindung entspr. Wikipedia -->
+				<link rel="icon" type="image/x-icon" href="/favicon.ico?v=2"/>
+				<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2"/>
+				<link type="image/x-icon" href="/favicon.ico?v=2"/>
+
+				<h:outputStylesheet name="css/app.css" library="streichelzoo"/>
+
+				<h:outputScript name="js/jquery.js"  library="streichelzoo" target="body" />
+				<h:outputScript name="js/what-input.js"  library="streichelzoo" target="body" />
+				<h:outputScript name="js/foundation.js"  library="streichelzoo" target="body" />
+				<h:outputScript name="js/app.js"  library="streichelzoo" target="body" />
+			</h:head>
+
+			<h:body>
+This page is intentionally left blank.
+			</h:body>
+		</html>
+	</f:view>

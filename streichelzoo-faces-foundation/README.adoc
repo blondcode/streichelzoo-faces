@@ -1,0 +1,6 @@
+= Streichelzoo Faces Foundation 6 CSS and JS
+
+Downloads and compiles Foundation for Sites 6 using npm, bower and gulp.
+
+It also provides some CSS for use with Asciidoctor.
+
