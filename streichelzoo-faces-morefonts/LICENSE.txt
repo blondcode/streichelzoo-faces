@@ -1,0 +1,47 @@
+Font licenses:
+
+https://www.google.com/fonts/specimen/Courgette
+Courgette
+Karolina Lach
+SIL Open Font License (OFL) 
+http://scripts.sil.org/OFL
+
+https://www.google.com/fonts/specimen/Lobster
+Lobster
+Pablo Impallari
+SIL Open Font License (OFL) 
+http://scripts.sil.org/OFL
+
+https://www.google.com/fonts/specimen/Playball
+Playball
+TypeSETit
+SIL Open Font License (OFL) 
+http://scripts.sil.org/OFL
+
+https://www.google.com/fonts/specimen/Salsa
+Salsa
+John Vargas Beltrán
+SIL Open Font License (OFL) 
+http://scripts.sil.org/OFL
+
+https://www.google.com/fonts/specimen/UnifrakturCook
+UnifrakturCook
+j. 'mach' wust
+SIL Open Font License (OFL) 
+http://scripts.sil.org/OFL
+
+https://www.google.com/fonts/specimen/UnifrakturMaguntia
+UnifrakturMaguntia
+j. 'mach' wust
+SIL Open Font License, 1.1
+
+https://www.google.com/fonts/specimen/Open+Sans
+Open Sans
+Steve Matteson
+Apache License, version 2.0
+http://www.apache.org/licenses/LICENSE-2.0.html
+
+https://www.google.com/fonts/specimen/Permanent+Marker
+Permanent Marker
+Font Diner
+Apache License, version 2.0
