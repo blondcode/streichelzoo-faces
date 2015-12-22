@@ -21,7 +21,7 @@ First download the project:
 
  git clone https://github.com/skaterkamp/streichelzoo-faces.git
 
-Then
+Make sure you have Maven 3.1.0 or higher installed.  Then
  
  cd streichelzoo-faces
  mvn install
@@ -57,3 +57,39 @@ To create a war file for Wildfly:
  mvn -P wilfly clean verify install
 
 The result is in the /target directory.
+
+
+== Note
+
+To install latest Maven in Debian Jessie:
+
+Add __deb http://http.debian.net/debian/ stretch main__ to /etc/apt/sources.list.
+
+Add to /etc/apt/preferences:
+
+----
+Package: *
+Pin: release n=stretch
+Pin-Priority: 130
+
+Package: maven
+Pin: release n=stretch
+Pin-Priority: 510
+
+Package: libmaven*
+Pin: release n=stretch
+Pin-Priority: 510
+
+Package: lib*java
+Pin: release n=stretch
+Pin-Priority: 510
+----
+
+Update and check:
+
+ aptitude update
+ apt-cache policy
+
+Then install:
+
+ aptitude install maven
