@@ -1,0 +1,7 @@
+= TODOs
+
+* Make font sources configurable to optinally use fonts from external resources in the Internet.
+
+* Fix production and compress code.
+
+* Cleanup webapp template, add more structured examples.

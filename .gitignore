@@ -37,4 +37,7 @@ nb-configuration.xml
 dependency-reduced-pom.xml
 .tern-project
 faces-config.NavData
+.LCKpom.xml~
+pom.xml.versionsBackup
 
+/target/

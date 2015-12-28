@@ -1,11 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.katerkamp.streichelzoo</groupId>
 	<artifactId>project</artifactId>
-	<version>0.92-SNAPSHOT</version>
+	<version>0.94</version>
 	<packaging>pom</packaging>
-	<name>Streichelzoo Faces</name>
+	<name>Streichelzoo Faces Project</name>
 	<description>Streichelzoo JSF Web Framework</description>
 	<url>http://katerkamp.de/streichelzoo</url>
 	<licenses>
@@ -28,6 +27,12 @@
 	</scm>
 	<properties>
 		<streichelzoo.version>${project.version}</streichelzoo.version>
+
+		<!-- webapp defaults -->
+		<themeGroupId>${project.groupId}</themeGroupId>
+		<themeArtifactId>streichelzoo-faces-theme</themeArtifactId>
+		<themeVersion>${project.version}</themeVersion>
+
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
@@ -49,24 +54,14 @@
 
 		<asciidoctor.version>1.5.2.1</asciidoctor.version>
 		<asciidoctorj.version>1.5.3.2</asciidoctorj.version>
-		<jcommander.version>1.48</jcommander.version>
-		<jruby.version>1.7.21</jruby.version>
 		
 		<web.resource.streichelzoo>${project.build.directory}/${project.build.finalName}/META-INF/resources/streichelzoo</web.resource.streichelzoo>
 
+		<nocompress>true</nocompress>
+		<project.mode.name>Development</project.mode.name>
 	</properties>
 
 	<profiles>
-		<profile>
-			<id>development</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<nocompress>true</nocompress>
-				<project.mode.name>Development</project.mode.name>
-			</properties>
-		</profile>
 		<profile>
 			<id>production</id>
 			<properties>
@@ -74,116 +69,14 @@
 				<project.mode.name>Production</project.mode.name>
 			</properties>
 		</profile>
-		<profile>
-			<id>site</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
-			<distributionManagement>
-				<site>
-					<id>katerkamp-site</id>
-					<url>scp://katerkamp.de/streichelzoo-faces/</url>
-					<!--url>file:///opt/wildfly/welcome-content/migtool/</url-->
-				</site>
-			</distributionManagement>
-			
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-javadoc-plugin</artifactId>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-site-plugin</artifactId>
-					</plugin>
-					<plugin>
-						<groupId>org.asciidoctor</groupId>
-						<artifactId>asciidoctor-maven-plugin</artifactId>
-					</plugin>
-				</plugins>
-			</build>
-
-		</profile>
-		<profile>
-			<id>MavenCentral</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-source-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>attach-sources</id>
-								<goals>
-									<goal>jar-no-fork</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<configuration>
-							<failOnError>false</failOnError>
-						</configuration>
-						<version>2.10.1</version>
-						<executions>
-							<execution>
-								<id>attach-javadocs</id>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.5</version>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>CleanRepoSrc</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<artifactId>maven-clean-plugin</artifactId>
-						<configuration>
-							<filesets>
-								<fileset>
-									<directory>${repo.dir}</directory>
-									<followSymlinks>false</followSymlinks>
-								</fileset>
-							</filesets>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
 	</profiles>
 	<modules>
-		<module>streichelzoo-faces-foundation</module>
-		<module>streichelzoo-faces-fonts</module>
-		<module>streichelzoo-faces-morefonts</module>
-		<module>streichelzoo-faces-template</module>
+		<module>streichelzoo-sass-foundation</module>
+		<module>streichelzoo-sass-asciidoc</module>
+		<module>streichelzoo-fonts-iconic</module>
+		<module>streichelzoo-fonts-misc</module>
+		<module>streichelzoo-faces-theme</module>
+		<module>streichelzoo-site-webapp</module>
 	</modules>
 	<build>
 
@@ -232,26 +125,6 @@
 					</executions>
 				</plugin>
 
-				<plugin>
-					<groupId>nl.geodienstencentrum.maven</groupId>
-					<artifactId>sass-maven-plugin</artifactId>
-					<version>2.14</version>
-					<executions>
-						<execution>
-							<phase>compile</phase>
-							<goals>
-								<goal>update-stylesheets</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-
-				<!-- CSS resources need to be translated into Java Resource Descriptors -->
-				<plugin>
-					<groupId>com.google.code.maven-replacer-plugin</groupId>
-					<artifactId>replacer</artifactId>
-					<version>1.5.3</version>
-				</plugin>
 
 				<plugin>
 					<groupId>net.alchim31.maven</groupId>
@@ -281,20 +154,6 @@
 						<nosuffix>true</nosuffix>
 						<jswarn>true</jswarn>
 						<nocompress>${nocompress}</nocompress> <!-- for Development -->
-						<!--
-						<aggregations>
-							<aggregation>
-								<removeIncluded>false</removeIncluded>
-								<insertNewLine>true</insertNewLine>
-								<inputDir>${project.build.directory}/assets/streichelzoo</inputDir>
-								<includes>
-									<include>js/*.js</include>
-									<include>css/*.css</include>
-								</includes>
-								<output>${jsfResourceDir}</output>
-							</aggregation>
-						</aggregations>
-						-->
 					</configuration>
 				</plugin>
 			
@@ -310,12 +169,6 @@
 								<Contact>Stefan Katerkamp</Contact>
 							</manifestEntries>
 						</archive>
-						<excludes>
-							<exclude>scss/**</exclude>
-							<exclude>/js/**</exclude> <!-- src/main/resources/js/ -->
-							<exclude>/css/**</exclude> <!-- src/main/resources/css/ -->
-							<exclude>.netbeans*</exclude> 
-						</excludes>
 					</configuration>
 				</plugin>
 
@@ -331,7 +184,7 @@
 						<additionalparam>-Xdoclint:none</additionalparam>
 						<aggregrate>true</aggregrate>
 						<links>
-							<link>http://katerkamp.de</link>
+							<link>http://katerkamp.de/streichelzoo</link>
 						</links>
 						<source>1.8</source>
 						<doclet>org.asciidoctor.Asciidoclet</doclet>
@@ -394,12 +247,12 @@
 						<dependency>
 							<groupId>org.slf4j</groupId>
 							<artifactId>slf4j-api</artifactId>
-							<version>1.7.12</version>
+							<version>1.7.13</version>
 						</dependency>
 						<dependency>
 							<groupId>org.slf4j</groupId>
 							<artifactId>slf4j-jdk14</artifactId>
-							<version>1.7.12</version>
+							<version>1.7.13</version>
 						</dependency>
 					</dependencies>
 				</plugin>
@@ -407,10 +260,8 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-clean-plugin</artifactId>
-					<version>2.6.1</version>
+					<version>3.0.0</version>
 				</plugin>
-
-
 			</plugins>
 		</pluginManagement>
 		<plugins>
@@ -427,7 +278,6 @@
 		</plugins>
 	</build>
 	<dependencyManagement>
-		<!-- plugin Management versions cant go into here -->
 		<dependencies>
 			<dependency>
 				<groupId>junit</groupId>
@@ -435,14 +285,6 @@
 				<version>4.12</version>
 				<scope>test</scope>
 			</dependency>
-			<!--
-			<dependency>
-				<groupId>org.glassfish.main.extras</groupId>
-				<artifactId>glassfish-embedded-all</artifactId>
-				<version>4.1</version>
-				<scope>test</scope>
-			</dependency>
-			-->
 			<!--
 			<dependency>
 				<groupId>javax</groupId>
@@ -478,7 +320,6 @@
 				<artifactId>omnifaces</artifactId>
 				<version>1.12.1</version>
 			</dependency>
-
 			<!--
 			<dependency>
 				<groupId>javax</groupId>
@@ -501,12 +342,12 @@
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-jdk14</artifactId>
-				<version>1.7.12</version>
+				<version>1.7.13</version>
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
-				<version>1.7.12</version>
+				<version>1.7.13</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -519,19 +360,14 @@
 				<version>2.10</version>
 			</dependency>
 			<dependency>
-				<groupId>de.katerkamp.streichelzoo</groupId>
-				<artifactId>webapp-commons</artifactId>
-				<version>0.91-SNAPSHOT</version>
-			</dependency>
-			<dependency>
 				<groupId>com.beust</groupId>
 				<artifactId>jcommander</artifactId>
-				<version>${jcommander.version}</version>
+				<version>1.48</version>
 			</dependency>
 			<dependency>
 				<groupId>org.jruby</groupId>
 				<artifactId>jruby-complete</artifactId>
-				<version>${jruby.version}</version>
+				<version>9.0.4.0</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

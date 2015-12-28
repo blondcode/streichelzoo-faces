@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <head>
+        <title>UserBean</title>
+    </head>
+    <body>
+		<p>
+		Hello #{userBean.firstName}
+		</p>
+        <h:form prependId="false">
+            <h:inputText value="#{userBean.firstName}" />
+            <h:commandButton value="submit" />
+        </h:form>
+    </body>
+</html>
+

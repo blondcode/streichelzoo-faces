@@ -1,62 +1,147 @@
-= Streichelzoo Faces Modules and Starter Template
+= Streichelzoo-Faces: Maven, Foundation based JSF Modules and Starter Kit
 
-This is a starter project to use Foundation for Sites 6 along with Java Server Faces,
-is more or less a mavenized Foundation for sites template.
+Disclaimer: This is work in progress.
 
-Everything is wrapped into a Maven project. The frontend code gets downloaded and
-compiled with npm, bower and gulp. All triggered by Maven. 
+This project is a Maven based starter kit for development of Java Server Faces JSF2.2
+web applications. These can be deployed on Java EE containers such as Wildfly, which
+scale from small systems to large sites.
+The project provides a design pattern across multiple Maven modules for the combination
+of these front- and backends. These modules may be distributed to a corporate
+Maven repository and in turn act as archetypes for rapid creation of additional applications.
 
-For rapid development of web pages and on the fly editing for Sass and XHTML pages
-a watcher plugin is provided together with a Jetty Web Server.
+The current implementation integrates Zurb Foundation for Sites 6 and Asciidoc
+with the frontend. Themes and site specific items like icons can be
+stored an theme module archetypes. The application itself gets into a prototype
+webapp archetype.
 
-It also is possible to use Asciidoc (Asciidoctor) files and transform then into
-XHTML. The adfoundation.css is Foundation 6 for Asciidoctor.
+= How it works
 
-Finally run create the war file and deploy this to your
-JavaEE container such as Wildfly.
+Download the Github project and run Maven install. This will then download all needed
+external Sass and JS dependencies like Foundation for Sites 6, jQuery using
+node and bower. It also downloads some preselected fonts. All this gets wrapped up 
+in a Sass source Maven jars and stored in the local Maven repository.
+
+Then there is a theme Maven subproject, which depends on the Sass source maven jars.
+Maven install compiles the Sass sources using gulp and provides a Maven theme jar module,
+which is ready to use for a the webapp. Furthermore, it creates an theme archetype,
+which it also stores in the repository. This allows for easy adaption of themes without
+having to bother with all underlying libraries.
+
+The same applies for the webapp jar. It also gets stored in the repository, along
+with its webapp archetype.
+
+And finally, for prototyping themes and creating stylish web pages, there is no need
+to create and assemble a war file during development. The webapp maven project
+provides an embedded Jetty web server, pages get served locally and can be viewed 
+at http://localhost:8888[] per local browser. And Sass files in the theme module 
+can be modified on the fly, a Maven watcher plugin looks for changes and autocompiles scss
+to css. Simply reload the browser to see the result.
+
+Once all is ready, a war file can be created and deployed into a production
+server. And the project itself can be turned into an archetype and stored in
+a local or corporate repository, so others can reuse this knowledge.
+
 
 == Setup
 
-First download the project:
+Make sure Maven 3.1.0 or higher is installed, see note below how to install this
+on a Debian Jessie system.  Download the project:
 
  git clone https://github.com/skaterkamp/streichelzoo-faces.git
 
-Make sure you have Maven 3.1.0 or higher installed.  Then
- 
+This results in this logical project structure:
+
+----
+streichelzoo-faces/
+`-- streichelzoo-site-webapp
+    |-- streichelzoo-faces-theme
+    |   |-- streichelzoo-sass-foundation
+    |   `-- streichelzoo-sass-asciidoc
+    |-- streichelzoo-fonts-iconic
+    `-- streichelzoo-fonts-misc
+----
+
+Sass modules are used by the theme module. The theme provides processed css and js for the
+webapp module. The webapp module contains the xhtml facelets and the Java backends.
+It also makes use of fonts provided by the font modules. To create the project, run:
+
  cd streichelzoo-faces
  mvn install
 
-== Web Page Development
+This downloads every dependency needed and installs all jars above in the local
+repository (++$HOME/.m2/++) plus 2 archetypes:
 
-To see the result
+* streichelzoo-faces-theme-archetype
+* streichelzoo-site-webapp-archetype
 
- cd streichelzoo-faces-template
- mvn jetty:run
+These archetypes contain the starter JSF2.2 webapp with its style and JavaScript framework
+packages in separate modules. There can be multiple web applications sharing the
+same base. In case of updates, for example a new Foundation for Sites version,
+the streichelzoo-sass-foundation module simply needs to be cleaned and reinstalled,
+and the theme needs to be recompiled, and the resulting war file redeployed.
 
-and open _http://localhost:8888 in a browser.
+== Web Page Development Example
 
+Suppose we want to create a common theme for site _example.com_, which is mapped to 
+virtual host _default-host_.  The context root is _/foo_. See ++boss-web.xml++ for 
+Wildfly and ++pom.xml++ contextPath for Jetty.
+
+----
+cd $HOME
+mkdir example-site
+cd example-site
+
+mvn archetype:generate -B \
+ -DarchetypeGroupId=de.katerkamp.streichelzoo \
+ -DarchetypeArtifactId=streichelzoo-faces-theme-archetype \
+ -DarchetypeVersion=0.94 \
+ -DgroupId=com.example.site \
+ -DartifactId=example-site-theme \
+ -Dversion=1.0-SNAPSHOT \
+ -Dpackage=com.example.site
+
+mvn archetype:generate -B \
+ -DarchetypeGroupId=de.katerkamp.streichelzoo \
+ -DarchetypeArtifactId=streichelzoo-site-webapp-archetype \
+ -DarchetypeVersion=0.94 \
+ -DgroupId=com.example.site \
+ -DartifactId=example-site-foo-webapp \
+ -Dversion=1.0-SNAPSHOT \
+ -Dpackage=com.example.site \
+ -DthemeGroupId=com.example.site \
+ -DthemeArtifactId=example-site-theme \
+ -DthemeVersion=1.0-SNAPSHOT
+
+(cd example-site-theme; mvn install)
+cd example-site-foo-webapp
+mvn install
+mvn jetty:run
+----
+
+Leave this window open. 
+Open a browser and go to http://localhost:8888[]. 
 Edit xhtml in src/main/webapp and reload the page and see changes immediately.
 
-If you wish to modify CSS on-the-fly, leave Jetty running
-and in some other window:
+If you wish to edit the theme as well, open another window, then:
 
- cd streichelzoo-faces-foundation
+ cd $HOME/example-site/example-site-theme
  mvn fizzed-watcher:run
 
-Then its possible to modify scss files like
-streichelzoo-faces-core/src/main/resources/scss/_settings.scss.
-Wait a few seconds for the recompile to finish
-and reload the page in the browser.
+Modify scss files, for example _example-site-theme/src/main/resources/scss/_settings.scss_.
+Wait a few seconds for the recompile to finish and reload the page in the browser.
 
 
-== Deployment
+///// 
+not ready yet
+== Deployment for production 
 
 To create a war file for Wildfly:
 
  cd streichelzoo-faces-template
  mvn -P wilfly clean verify install
 
-The result is in the /target directory.
+The resulting war file is in the /target directory.
+/////
 
 
 == Note
@@ -93,3 +178,12 @@ Update and check:
 Then install:
 
  aptitude install maven
+
+
+////
+== Note how to update version
+
+To set a new version, specify a local property version per artifact and use this:
+
+ mvn versions:set versions:update-properties -DnewVersion=1.23
+////

@@ -1,0 +1,250 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>de.katerkamp.streichelzoo</groupId>
+		<artifactId>project</artifactId>
+		<version>0.94</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<groupId>de.katerkamp.streichelzoo</groupId>
+	<artifactId>streichelzoo-faces-theme</artifactId>
+	<version>0.94</version>
+	<packaging>jar</packaging>
+	<name>Streichelzoo Faces Theme</name>
+	<description>
+		This module assembles a JSF web jar library with a default theme,
+		consisting of CSS and JS, as well as some icons.
+		It takes Sass files from streichelzoo-faces shared resources and 
+		compiles resulting CSS from it. Same for JS. 
+		In development mode CSS and JS is uncompressed,
+		in production mode it will be compressed.
+	</description>
+	<url>http://katerkamp.de/streichelzoo</url>
+
+	<properties>
+		<szf.version>0.94</szf.version>
+		<sza.version>0.94</sza.version>
+		<shres.dir>${project.build.directory}/maven-shared-archive-resources</shres.dir>
+		<gulp.src>${basedir}/src/main/resources/scss/**/*.scss</gulp.src>
+		<gulp.dest>${project.build.directory}/assets/css</gulp.dest>
+	</properties>
+
+	<build>
+		<plugins>
+			<!-- mvn remote-resources:process -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-remote-resources-plugin</artifactId>
+				<version>1.5</version>
+				<configuration>
+					<resourceBundles>
+						<resourceBundle>de.katerkamp.streichelzoo:streichelzoo-sass-foundation:${szf.version}</resourceBundle>
+						<resourceBundle>de.katerkamp.streichelzoo:streichelzoo-sass-asciidoc:${sza.version}</resourceBundle>
+					</resourceBundles>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>process</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- mvn generate-resources antrun:run -->
+			<!-- set execute permissions, see https://issues.apache.org/jira/browse/MRESOURCES-132 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>process-test-classes</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<chmod file="${shres.dir}/node/node" perm="755" />
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/assets</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${shres.dir}/assets</directory>
+								</resource>
+								<resource>
+									<directory>${basedir}/src/main/resources</directory>
+									<includes>
+										<include>js/*</include>
+										<include>css/*</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy-gulpfile</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${shres.dir}/</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${basedir}/src/main/etc</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- compile sass, phase generate-resources -->
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>0.0.26</version>
+
+				<configuration>
+					<workingDirectory>${shres.dir}</workingDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<id>gulp sass</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>gulp</goal>
+						</goals>
+						<configuration>
+							<arguments>sass</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<!-- now all css and js is in target/assets -->
+			<!-- copy and optinally compress css and js -->
+			<!-- todo make library streichelzoo configurable for archetype -->
+			<plugin>
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>yuicompressor-maven-plugin</artifactId>
+				<configuration>
+					<sourceDirectory>${project.build.directory}/assets</sourceDirectory>
+					<outputDirectory>${project.build.outputDirectory}/META-INF/resources/streichelzoo</outputDirectory>
+				</configuration>
+			</plugin>
+			<!-- webjar to be included in webapp -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<includes>
+						<include>META-INF/**/*</include>
+						<include>bundles/**/*</include>
+					</includes>
+				</configuration>
+			</plugin>
+			<!-- mvn fizzed-watcher:run -->
+			<plugin>
+				<groupId>com.fizzed</groupId>
+				<artifactId>fizzed-watcher-maven-plugin</artifactId>
+				<version>1.0.6</version>
+				<configuration>
+					<touchFile>${project.build.directory}/watcher.txt</touchFile>
+					<watches>
+						<watch>
+							<directory>${basedir}/src/main/resources/scss</directory>
+							<exclude>.*.swp</exclude>
+						</watch>
+					</watches>
+					<goals>
+						<goal>compile</goal>
+					</goals>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+	<profiles>
+		<profile>
+			<id>create-archetype</id>
+			<activation>
+				<file>
+					<exists>../../streichelzoo-faces/pom.xml</exists>
+				</file>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-archetype-plugin</artifactId>
+						<version>2.4</version>	
+						<executions>
+							<execution>
+								<id>create archetype</id>
+								<phase>package</phase>
+								<goals>
+									<goal>create-from-project</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin> 
+					<!-- install archetype jar in repo -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-install-plugin</artifactId>
+						<version>2.5.2</version>
+						<executions>
+							<execution>
+								<id>install archetype</id>
+								<phase>package</phase>
+								<goals>
+									<goal>install-file</goal>
+								</goals>
+								<configuration>
+									<file>${project.build.directory}/generated-sources/archetype/target/${project.artifactId}-archetype-${project.version}.jar</file>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}-archetype</artifactId>
+									<version>${project.version}</version>
+									<packaging>jar</packaging>
+									<pomFile>${project.build.directory}/generated-sources/archetype/pom.xml</pomFile>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<dependency>
+			<groupId>de.katerkamp.streichelzoo</groupId>
+			<artifactId>streichelzoo-sass-foundation</artifactId>
+			<version>${szf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>de.katerkamp.streichelzoo</groupId>
+			<artifactId>streichelzoo-sass-asciidoc</artifactId>
+			<version>${sza.version}</version>
+		</dependency>
+	</dependencies>
+	
+</project>
