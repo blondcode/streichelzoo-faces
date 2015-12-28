@@ -77,27 +77,6 @@
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>
 					<execution>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.build.directory}/assets</outputDirectory>
-							<resources>
-								<resource>
-									<directory>${shres.dir}/assets</directory>
-								</resource>
-								<resource>
-									<directory>${basedir}/src/main/resources</directory>
-									<includes>
-										<include>js/*</include>
-										<include>css/*</include>
-									</includes>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-					<execution>
 						<id>copy-gulpfile</id>
 						<phase>generate-resources</phase>
 						<goals>
@@ -113,6 +92,60 @@
 							</resources>
 						</configuration>
 					</execution>
+					<execution>
+						<id>copy-shared-js-to-assets</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/assets/js</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${shres.dir}/bower_components/jquery/dist</directory>
+									<includes>
+										<include>jquery.js</include>
+									</includes>
+								</resource>
+								<resource>
+									<directory>${shres.dir}/bower_components/what-input/</directory>
+									<includes>
+										<include>what-input.js</include>
+									</includes>
+								</resource>
+								<resource>
+									<directory>${shres.dir}/bower_components/foundation-sites/js</directory>
+									<includes>
+										<include>*.js</include>
+									</includes>
+								</resource>
+								<resource>
+									<directory>${shres.dir}/bower_components/foundation-sites/dist</directory>
+									<includes>
+										<include>foundation.js</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy-local-js-to-assets</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/assets/js</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${basedir}/src/main/resources/js</directory>
+									<includes>
+										<include>*.js</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
 			<!-- compile sass, phase generate-resources -->
@@ -120,7 +153,6 @@
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
 				<version>0.0.26</version>
-
 				<configuration>
 					<workingDirectory>${shres.dir}</workingDirectory>
 				</configuration>

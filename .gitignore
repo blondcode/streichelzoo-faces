@@ -1,4 +1,5 @@
 # Streichelzoo specifics
+streichelzoo-sass-foundation/src/main/resources/**
 **/src/main/repo/*
 **/skatintern/**
 
@@ -7,6 +8,7 @@
 
 # maven noise
 **/target/**
+/target/
 
 # gradle noise
 .gradle
@@ -40,4 +42,3 @@ faces-config.NavData
 .LCKpom.xml~
 pom.xml.versionsBackup
 
-/target/

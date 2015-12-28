@@ -31,73 +31,12 @@
 
 	<!-- 
 	Default Lifecycle:
-	generate-sources > process-sources >  generate-resources > process-resources
+	generate-sources > process-sources >  generate-resources > 
+	process-resources > compile
 	-->
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<executions>
-					<!-- Install Step 1: copy npm and bower json files to 
-					resources dir, where upstream resources will be stored -->
-					<execution>
-						<id>copy-frontend-configs</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${basedir}/src/main/resources/</outputDirectory>
-							<resources>
-								<resource>
-									<directory>${basedir}/src/main/etc</directory>
-									<filtering>true</filtering>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-					<!-- Install Step 4: extract js from downloaded upstream
-					resources into assets dir -->
-					<execution>
-						<id>copy-js</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${basedir}/src/main/resources/assets/js</outputDirectory>
-							<resources>
-								<resource>
-									<directory>${bower.components.dir}/jquery/dist</directory>
-									<includes>
-										<include>jquery.js</include>
-									</includes>
-								</resource>
-								<resource>
-									<directory>${bower.components.dir}/what-input/</directory>
-									<includes>
-										<include>what-input.js</include>
-									</includes>
-								</resource>
-								<resource>
-									<directory>${bower.components.dir}/foundation-sites/js</directory>
-									<includes>
-										<include>*.js</include>
-									</includes>
-								</resource>
-								<resource>
-									<directory>${bower.components.dir}/foundation-sites/dist</directory>
-									<includes>
-										<include>foundation.js</include>
-									</includes>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
@@ -136,13 +75,38 @@
 			</plugin>
 
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<!-- Install Step 1: copy npm and bower json files to 
+					resources dir, where upstream resources will be stored -->
+					<execution>
+						<id>copy-frontend-configs</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/src/main/resources/</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${basedir}/src/main/etc</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
 				<artifactId>maven-remote-resources-plugin</artifactId>
 				<version>1.5</version>
-				<!-- Install Step 5: create bundle from src/main/resources for 
+				<!-- Install Step 4: create bundle from src/main/resources for 
 				use in theme module -->
 				<executions>
 					<execution>
-						<phase>process-resources</phase>
+						<phase>compile</phase>
 						<goals>
 							<goal>bundle</goal>
 						</goals>

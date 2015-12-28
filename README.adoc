@@ -1,4 +1,4 @@
-= Streichelzoo-Faces: Maven, Foundation based JSF Modules and Starter Kit
+= Streichelzoo-Faces: Starter Kit for Development of Maven/Foundation/JSF2.2 based Webapps
 
 Disclaimer: This is work in progress.
 
@@ -20,10 +20,21 @@ Download the Github project and run Maven install. This will then download all n
 external Sass and JS dependencies like Foundation for Sites 6, jQuery using
 node and bower. It also downloads some preselected fonts. All this gets wrapped up 
 in a Sass source Maven jars and stored in the local Maven repository.
+The logical project structure:
 
-Then there is a theme Maven subproject, which depends on the Sass source maven jars.
-Maven install compiles the Sass sources using gulp and provides a Maven theme jar module,
-which is ready to use for a the webapp. Furthermore, it creates an theme archetype,
+----
+streichelzoo-faces
+`-- streichelzoo-site-webapp
+    |-- streichelzoo-faces-theme
+    |   |-- streichelzoo-sass-foundation
+    |   `-- streichelzoo-sass-asciidoc
+    |-- streichelzoo-fonts-iconic
+    `-- streichelzoo-fonts-misc
+----
+
+The theme module depends on Sass source maven modules.
+Maven install compiles the Sass sources using gulp and provides a theme jar module,
+which is ready for use by the webapp. Furthermore, it creates a archetype,
 which it also stores in the repository. This allows for easy adaption of themes without
 having to bother with all underlying libraries.
 
@@ -49,21 +60,7 @@ on a Debian Jessie system.  Download the project:
 
  git clone https://github.com/skaterkamp/streichelzoo-faces.git
 
-This results in this logical project structure:
-
-----
-streichelzoo-faces/
-`-- streichelzoo-site-webapp
-    |-- streichelzoo-faces-theme
-    |   |-- streichelzoo-sass-foundation
-    |   `-- streichelzoo-sass-asciidoc
-    |-- streichelzoo-fonts-iconic
-    `-- streichelzoo-fonts-misc
-----
-
-Sass modules are used by the theme module. The theme provides processed css and js for the
-webapp module. The webapp module contains the xhtml facelets and the Java backends.
-It also makes use of fonts provided by the font modules. To create the project, run:
+To create the project, run:
 
  cd streichelzoo-faces
  mvn install
@@ -74,17 +71,19 @@ repository (++$HOME/.m2/++) plus 2 archetypes:
 * streichelzoo-faces-theme-archetype
 * streichelzoo-site-webapp-archetype
 
-These archetypes contain the starter JSF2.2 webapp with its style and JavaScript framework
-packages in separate modules. There can be multiple web applications sharing the
-same base. In case of updates, for example a new Foundation for Sites version,
+These archetypes contain a starter JSF2.2 webapp with a style and JavaScript framework
+packaged as separate modules. This way, be multiple web applications may share the
+same framework. In case of updates, for example a new Foundation for Sites version,
 the streichelzoo-sass-foundation module simply needs to be cleaned and reinstalled,
 and the theme needs to be recompiled, and the resulting war file redeployed.
 
 == Web Page Development Example
 
 Suppose we want to create a common theme for site _example.com_, which is mapped to 
-virtual host _default-host_.  The context root is _/foo_. See ++boss-web.xml++ for 
-Wildfly and ++pom.xml++ contextPath for Jetty.
+virtual host _default-host_.  The context root is _/foo_. (See ++boss-web.xml++ for 
+Wildfly and ++pom.xml++ contextPath for Jetty.) The current streichelzoo-faces
+version is _0.94_ and the resulting webapp shall have version
+_1.0-SNAPSHOT_. Then, open a shell window and execute these commands:
 
 ----
 cd $HOME
