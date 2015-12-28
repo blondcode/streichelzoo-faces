@@ -5,9 +5,10 @@ Disclaimer: This is work in progress.
 This project is a Maven based starter kit for development of Java Server Faces JSF2.2
 web applications. These can be deployed on Java EE containers such as Wildfly, which
 scale from small systems to large sites.
-The project provides a design pattern across multiple Maven modules for the combination
-of these front- and backends. These modules may be distributed to a corporate
-Maven repository and in turn act as archetypes for rapid creation of additional applications.
+The project provides a design pattern across multiple Maven modules, which combines
+front- and backends. For example, these modules may be adapted to some corporate
+design and redistributed to some corporate Maven repository. Then they could act 
+as archetypes for rapid creation of additional corporate design specific applications.
 
 The current implementation integrates Zurb Foundation for Sites 6 and Asciidoc
 with the frontend. Themes and site specific items like icons can be
@@ -72,7 +73,7 @@ repository (++$HOME/.m2/++) plus 2 archetypes:
 * streichelzoo-site-webapp-archetype
 
 These archetypes contain a starter JSF2.2 webapp with a style and JavaScript framework
-packaged as separate modules. This way, be multiple web applications may share the
+packaged as separate modules. This way, multiple web applications may share the
 same framework. In case of updates, for example a new Foundation for Sites version,
 the streichelzoo-sass-foundation module simply needs to be cleaned and reinstalled,
 and the theme needs to be recompiled, and the resulting war file redeployed.
@@ -80,7 +81,7 @@ and the theme needs to be recompiled, and the resulting war file redeployed.
 == Web Page Development Example
 
 Suppose we want to create a common theme for site _example.com_, which is mapped to 
-virtual host _default-host_.  The context root is _/foo_. (See ++boss-web.xml++ for 
+virtual host _default-host_.  The context root is _/foo_. (See ++jboss-web.xml++ for 
 Wildfly and ++pom.xml++ contextPath for Jetty.) The current streichelzoo-faces
 version is _0.94_ and the resulting webapp shall have version
 _1.0-SNAPSHOT_. Then, open a shell window and execute these commands:
@@ -88,12 +89,15 @@ _1.0-SNAPSHOT_. Then, open a shell window and execute these commands:
 ----
 cd $HOME
 mkdir example-site
+rm -r example-site/*
 cd example-site
+
+szversion=0.95-SNAPSHOT
 
 mvn archetype:generate -B \
  -DarchetypeGroupId=de.katerkamp.streichelzoo \
  -DarchetypeArtifactId=streichelzoo-faces-theme-archetype \
- -DarchetypeVersion=0.94 \
+ -DarchetypeVersion=$szversion \
  -DgroupId=com.example.site \
  -DartifactId=example-site-theme \
  -Dversion=1.0-SNAPSHOT \
@@ -102,7 +106,7 @@ mvn archetype:generate -B \
 mvn archetype:generate -B \
  -DarchetypeGroupId=de.katerkamp.streichelzoo \
  -DarchetypeArtifactId=streichelzoo-site-webapp-archetype \
- -DarchetypeVersion=0.94 \
+ -DarchetypeVersion=$szversion \
  -DgroupId=com.example.site \
  -DartifactId=example-site-foo-webapp \
  -Dversion=1.0-SNAPSHOT \
