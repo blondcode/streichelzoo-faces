@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.katerkamp.streichelzoo</groupId>
 	<artifactId>project</artifactId>
-	<version>0.94</version>
+	<version>0.95-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Streichelzoo Faces Project</name>
 	<description>Streichelzoo JSF Web Framework</description>

@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>de.katerkamp.streichelzoo</groupId>
 		<artifactId>project</artifactId>
-		<version>0.94</version>
+		<version>0.95-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
 	<groupId>de.katerkamp.streichelzoo</groupId>

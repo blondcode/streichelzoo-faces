@@ -184,5 +184,6 @@ Then install:
 
 To set a new version, specify a local property version per artifact and use this:
 
- mvn versions:set versions:update-properties -DnewVersion=1.23
+ mvn versions:set -DnewVersion=0.95-SNAPSHOT
+ mvn versions:update-properties -DnewVersion=0.95-SNAPSHOT
 ////
