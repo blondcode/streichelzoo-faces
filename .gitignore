@@ -1,12 +1,14 @@
 # Streichelzoo specifics
 streichelzoo-sass-foundation/src/main/resources
 **/skatintern
+streichelzoo-fonts-iconic/src/main/repo/*
+**/src/main/repo/
 
 .svn
 .wtpmodules
 
 # maven noise
-**/target
+#**/target
 target
 
 # gradle noise

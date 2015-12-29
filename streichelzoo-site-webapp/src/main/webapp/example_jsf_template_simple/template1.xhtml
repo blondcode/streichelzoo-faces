@@ -1,0 +1,57 @@
+<!DOCTYPE html [
+	<!ENTITY copy "&#169;"> 
+	<!ENTITY nbsp "&#160;"> 
+	<!ENTITY bull "&#8226;"> 
+	<!ENTITY euro "&#8364;"> 
+	]>
+
+	<html xmlns="http://www.w3.org/1999/xhtml"   
+		  xmlns:h="http://java.sun.com/jsf/html"
+		  xmlns:ui="http://java.sun.com/jsf/facelets"
+		  xmlns:f="http://xmlns.jcp.org/jsf/core"
+		  >
+
+		<h:head>
+			<meta charset="utf-8" />
+			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+			<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+			<title>Streichelzoo | common layout template</title>
+			<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+			<h:outputStylesheet name="css/app.css" library="streichelzoo" />
+			<h:outputStylesheet name="css/font-awesome.css" library="streichelzoo" />
+			<h:outputScript name="js/jquery.js" library="streichelzoo" target="body" />
+			<h:outputScript name="js/what-input.js" library="streichelzoo" target="body" />
+			<h:outputScript name="js/foundation.js" library="streichelzoo" target="body" />
+			<h:outputScript name="js/app.js" library="streichelzoo" target="body" />
+		</h:head>
+
+		<h:body>
+			<f:view>
+
+				<div id="page">
+
+					<div id="header">
+						<ui:insert name="header" >
+							<ui:include src="template_commonHeader.xhtml" />
+						</ui:insert>
+					</div>
+
+					<div id="content">
+						<ui:insert name="content" >
+							<ui:include src="template_commonContent.xhtml" />
+						</ui:insert>
+					</div>
+
+					<div id="footer">
+						<ui:insert name="footer" >
+							<p>I am the default footer, defined in template1.</p>
+						</ui:insert>
+					</div>
+
+				</div>
+
+			</f:view>
+		</h:body>
+	</html>
+
+

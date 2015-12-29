@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html [
+	<!ENTITY copy "&#169;"> 
+	<!ENTITY nbsp "&#160;"> 
+	<!ENTITY bull "&#8226;"> 
+	<!ENTITY euro "&#8364;"> 
+	]>
+
+	<html xmlns="http://www.w3.org/1999/xhtml"   
+		  xmlns:h="http://java.sun.com/jsf/html"
+		  xmlns:ui="http://java.sun.com/jsf/facelets"
+		  >
+		<head>
+			<base href="../../../../../"/>
+			<title>PageA</title>
+			<link 
+				href="streichelzoo-faces-theme/target/assets/css/foundation-docs.css"
+				rel="stylesheet" type="text/css"/>
+		</head>
+
+		<body>
+			<p>This is page A. Its a page wrapped in simple html5, so the content
+				can be viewed in a browser when called from the file system.
+				Everything outside ui:define gets discarded by JSF.
+			</p>
+
+			<ui:composition template="template1.xhtml">
+
+				<hr/>
+				<ui:define name="content">
+					<h2>&bull; This is page A content</h2>
+					<p>
+					These font-awsome fonts can only be seen per served JSF page,
+					and not per file view: </p>
+					Spinner:
+					<i class="fa fa-spinner fa-spin"></i>
+					Circle:
+					<i class="fa fa-circle-o-notch fa-spin"></i>
+					Refresh:
+					<i class="fa fa-refresh fa-spin"></i>
+					Cog:
+					<i class="fa fa-cog fa-spin"></i>
+					Spinner Pulse:
+					<i class="fa fa-spinner fa-pulse"></i>
+
+					<h3>The userBean Demo:</h3>
+					<p>
+						Hello #{userBean.firstName}
+					</p>
+					<h:form prependId="false">
+						<h:inputText value="#{userBean.firstName}" />
+						<h:commandButton value="submit" />
+					</h:form>
+
+				</ui:define>
+
+				<hr/>
+				<ui:define name="footer">
+					<h2>&bull; This is page A Footer</h2>
+				</ui:define>
+				<hr/>
+
+			</ui:composition>
+
+		</body>
+
+	</html>
+
