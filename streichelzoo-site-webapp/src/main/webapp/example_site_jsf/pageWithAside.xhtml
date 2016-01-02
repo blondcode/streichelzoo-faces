@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+	<html xmlns="http://www.w3.org/1999/xhtml"   
+		  xmlns:h="http://java.sun.com/jsf/html"
+		  xmlns:ui="http://java.sun.com/jsf/facelets"
+		  xmlns:f="http://xmlns.jcp.org/jsf/core"
+		  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+		<head>
+			<base href="../../../../../"/>
+			<title>Homepage</title>
+			<link 
+				href="streichelzoo-faces-theme/target/assets/css/foundation-sites.css"
+				rel="stylesheet" type="text/css"/>
+		</head>
+		<body>
+			<ui:composition template="template/withAside.xhtml">
+
+				<!-- this gets ignored in the template -->
+				<ui:define name="aside">
+					<h5>Lorem ipsum dolor</h5>
+					<a class="download button expand" href="http://exaple.com/download.html">Download Ipsum</a>
+					<nav>
+						<ul class="side-nav">
+							<li class="heading">Setup</li>
+							<li>
+								<a data-search="" href="/">At vero eos</a>
+							</li>
+							<li>
+								<a data-search="Styles" href="/">Stet</a>
+							</li>
+						</ul>
+					</nav>
+				</ui:define>
+
+				<hr/>
+
+				<ui:define name="article">
+					<h1 id="keystrokes">Lorem ipsum dolor sit amet</h1>
+					<div id="component-name" name="Lorem"></div>
+					<h3 class="subheader">
+						At vero eos et accusam et justo duo dolores et ea rebum.
+						Stet clita kasd gubergren, no sea takimata sanctus est.
+						For example <kbd>Cmd</kbd> + <kbd>Q</kbd>.
+						Nemo enim ipsam voluptatem quia voluptas sit aspernatur 
+						aut odit aut fugit, sed quia consequuntur magni dolores 
+						eos qui ratione voluptatem sequi nesciunt. Neque porro 
+						quisquam est, qui dolorem ipsum quia dolor sit amet, 
+						consectetur, adipisci velit, sed quia non numquam eius 
+						modi tempora incidunt ut labore et dolore magnam aliquam
+						quaerat voluptatem.
+					</h3>
+					<hr/>
+					<h3>Foo</h3>
+					<p>bla bla bla</p>
+					<h4>Bar</h4>
+					<p>bla bla bla</p>
+				</ui:define>
+
+			</ui:composition>
+		</body>
+
+	</html>

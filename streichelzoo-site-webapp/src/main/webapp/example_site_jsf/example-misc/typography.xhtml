@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  >
+	<head>
+		<title>Kitchensink</title>
+		<base href="../../../../../../"/>
+		<link href="streichelzoo-faces-theme/target/assets/css/foundation-sites.css" rel="stylesheet" type="text/css"/>
+	</head>
+
+	<body>
+		<!-- Note: the template path is relative to the webapp folder -->
+		<ui:composition template="/example_site_jsf/template/articleOnly.xhtml">
+			<ui:define name="article">
+<div class="row">
+            <div class="large-12 medium-8 columns">
+              <h1 id="typography">Typography</h1>
+              <h3 class="subheader">Typography in Foundation 5 is meant 
+to make your life easier by providing clean, attractive, simple default 
+styles for all of the most basic typographical elements.</h3>
+
+<hr/>
+<h3 id="headers">Headers</h3>
+<p>Foundation includes styles for all of the header elements that are 
+balanced and based on a modular scale (though modular-scale is not a 
+dependency of Foundation).</p>
+<div class="row">
+  <div class="large-6 columns">
+  <h4>HTML</h4>
+  <pre><code class="language-html"><div class="code-container"><span class="tag">&lt;<span class="title">h1</span>&gt;</span>h1. This is a very large header.<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+<span class="tag">&lt;<span class="title">h2</span>&gt;</span>h2. This is a large header.<span class="tag">&lt;/<span class="title">h2</span>&gt;</span>
+<span class="tag">&lt;<span class="title">h3</span>&gt;</span>h3. This is a medium header.<span class="tag">&lt;/<span class="title">h3</span>&gt;</span>
+<span class="tag">&lt;<span class="title">h4</span>&gt;</span>h4. This is a moderate header.<span class="tag">&lt;/<span class="title">h4</span>&gt;</span>
+<span class="tag">&lt;<span class="title">h5</span>&gt;</span>h5. This is a small header.<span class="tag">&lt;/<span class="title">h5</span>&gt;</span>
+<span class="tag">&lt;<span class="title">h6</span>&gt;</span>h6. This is a tiny header.<span class="tag">&lt;/<span class="title">h6</span>&gt;</span></div></code></pre>
+
+  </div>
+  <div class="large-6 columns">
+  <h4>Rendered HTML</h4>
+      <div class="type-demo">
+            <h1>h1. This is a very large header.</h1>
+<h2>h2. This is a large header.</h2>
+<h3>h3. This is a medium header.</h3>
+<h4>h4. This is a moderate header.</h4>
+<h5>h5. This is a small header.</h5>
+<h6>h6. This is a tiny header.</h6>
+        </div>
+  </div>
+</div>
+
+<hr/>
+<h3 id="subheaders">Subheaders</h3>
+<p>Lighten up your headers by adding a class of .subheader to any header element.</p>
+<div class="row">
+  <div class="large-6 columns">
+  <h4>HTML</h4>
+  <pre><code class="language-html"><div class="code-container"><span class="tag">&lt;<span class="title">h1</span> <span class="attribute">class</span>=<span class="value">"subheader"</span>&gt;</span>h1.subheader<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+<span class="tag">&lt;<span class="title">h2</span> <span class="attribute">class</span>=<span class="value">"subheader"</span>&gt;</span>h2.subheader<span class="tag">&lt;/<span class="title">h2</span>&gt;</span>
+<span class="tag">&lt;<span class="title">h3</span> <span class="attribute">class</span>=<span class="value">"subheader"</span>&gt;</span>h3.subheader<span class="tag">&lt;/<span class="title">h3</span>&gt;</span>
+<span class="tag">&lt;<span class="title">h4</span> <span class="attribute">class</span>=<span class="value">"subheader"</span>&gt;</span>h4.subheader<span class="tag">&lt;/<span class="title">h4</span>&gt;</span>
+<span class="tag">&lt;<span class="title">h5</span> <span class="attribute">class</span>=<span class="value">"subheader"</span>&gt;</span>h5.subheader<span class="tag">&lt;/<span class="title">h5</span>&gt;</span>
+<span class="tag">&lt;<span class="title">h6</span> <span class="attribute">class</span>=<span class="value">"subheader"</span>&gt;</span>h6.subheader<span class="tag">&lt;/<span class="title">h6</span>&gt;</span></div></code></pre>
+
+  </div>
+  <div class="large-6 columns">
+  <h4>Rendered HTML</h4>
+      <div class="type-demo">
+
+<h1 class="subheader">h1.subheader</h1>
+<h2 class="subheader">h2.subheader</h2>
+<h3 class="subheader">h3.subheader</h3>
+<h4 class="subheader">h4.subheader</h4>
+<h5 class="subheader">h5.subheader</h5>
+<h6 class="subheader">h6.subheader</h6>
+
+        </div>
+  </div>
+</div>
+
+<hr/>
+<h3 id="small-header-segments">Small Header Segments</h3>
+<p>By inserting a <code>small</code> element into a header Foundation 
+will scale the header font size down for an inline element, allowing you
+ to use this for subtitles or other secondary header text.</p>
+<div class="row">
+  <div class="large-6 columns">
+  <h4>HTML</h4>
+<pre><code class="language-html"><div class="code-container"><span class="tag">&lt;<span class="title">h1</span>&gt;</span>h1. <span class="tag">&lt;<span class="title">small</span>&gt;</span>Small segment header.<span class="tag">&lt;/<span class="title">small</span>&gt;</span><span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+<span class="tag">&lt;<span class="title">h2</span>&gt;</span>h2. <span class="tag">&lt;<span class="title">small</span>&gt;</span>Small segment header.<span class="tag">&lt;/<span class="title">small</span>&gt;</span><span class="tag">&lt;/<span class="title">h2</span>&gt;</span>
+<span class="tag">&lt;<span class="title">h3</span>&gt;</span>h3. <span class="tag">&lt;<span class="title">small</span>&gt;</span>Small segment header.<span class="tag">&lt;/<span class="title">small</span>&gt;</span><span class="tag">&lt;/<span class="title">h3</span>&gt;</span>
+<span class="tag">&lt;<span class="title">h4</span>&gt;</span>h4. <span class="tag">&lt;<span class="title">small</span>&gt;</span>Small segment header.<span class="tag">&lt;/<span class="title">small</span>&gt;</span><span class="tag">&lt;/<span class="title">h4</span>&gt;</span>
+<span class="tag">&lt;<span class="title">h5</span>&gt;</span>h5. <span class="tag">&lt;<span class="title">small</span>&gt;</span>Small segment header.<span class="tag">&lt;/<span class="title">small</span>&gt;</span><span class="tag">&lt;/<span class="title">h5</span>&gt;</span>
+<span class="tag">&lt;<span class="title">h6</span>&gt;</span>h6. <span class="tag">&lt;<span class="title">small</span>&gt;</span>Small segment header.<span class="tag">&lt;/<span class="title">small</span>&gt;</span><span class="tag">&lt;/<span class="title">h6</span>&gt;</span></div></code></pre>
+
+  </div>
+  <div class="large-6 columns">
+  <h4>Rendered HTML</h4>
+      <div class="type-demo">
+            <h1>h1. <small>Small segment header.</small></h1>
+<h2>h2. <small>Small segment header.</small></h2>
+<h3>h3. <small>Small segment header.</small></h3>
+<h4>h4. <small>Small segment header.</small></h4>
+<h5>h5. <small>Small segment header.</small></h5>
+<h6>h6. <small>Small segment header.</small></h6>
+        </div>
+  </div>
+</div>
+
+<hr/>
+<h3 id="paragraphs">Paragraphs</h3>
+<p>This is a paragraph. Paragraphs are preset with a font size, line 
+height and spacing to match the overall vertical rhythm. To show what a 
+paragraph looks like this needs a little more content -- so, did you 
+know that there are storms occurring on Jupiter that are larger than the
+ Earth? Pretty cool. Wrap <code>strong</code> around type to <strong>make it bold!</strong> You can also use <code>em</code> to <em>italicize your words</em>.</p>
+<h4>HTML</h4>
+
+<pre><code class="language-html"><div class="code-container"><span class="tag">&lt;<span class="title">p</span>&gt;</span>This is a paragraph. Paragraphs are preset with a font size, line height and spacing to match the overall vertical rhythm. To show what a paragraph looks like this needs a little more content so, did you know that there are storms occurring on Jupiter that are larger than the Earth? Pretty cool. Wrap strong around type to <span class="tag">&lt;<span class="title">strong</span>&gt;</span>make it bold!<span class="tag">&lt;/<span class="title">strong</span>&gt;</span>. You can also use em to <span class="tag">&lt;<span class="title">em</span>&gt;</span>italicize your words<span class="tag">&lt;/<span class="title">em</span>&gt;</span>.<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div></code></pre>
+
+
+<hr/>
+<div class="callout panel text-center">Need to align text? We made some slick <a href="http://foundation.zurb.com/docs/utility-classes.html">utility classes</a> to help you out. </div>
+
+<h3 id="links">Links</h3>
+<p>Links are very standard, and the <a href="http://www.youtube.com/watch?v=zT2aVoUkSDg">color is preset</a> to the Foundation primary color.</p>
+<h4>HTML</h4>
+
+<pre><code class="language-html"><div class="code-container"><span class="tag">&lt;<span class="title">p</span>&gt;</span>Links are very standard, and the <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://www.youtube.com/watch?v=zT2aVoUkSDg"</span>&gt;</span>color is preset<span class="tag">&lt;/<span class="title">a</span>&gt;</span> to the Foundation primary color.<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div></code></pre>
+
+
+<hr/>
+<h3 id="lists">Lists</h3>
+<p>Lists are helpful for, well, lists of things. Didn't see that coming 
+did you! There are baked-in styles for a number of different unordered 
+list styles, as well as ordered and definition lists.</p>
+<div class="row">
+  <div class="large-6 columns">
+  <h4>HTML</h4>
+  <pre><code class="language-html"><div class="code-container"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"disc"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item with a much longer description or more content.<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item
+    <span class="tag">&lt;<span class="title">ul</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span>Nested list item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span>Nested list item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span>Nested list item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+ <span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></code></pre>
+
+  </div>
+  <div class="large-6 columns">
+    <h4>Rendered HTML</h4>
+    <ul class="disc">
+      <li>List item with a much longer description or more content.</li>
+      <li>List item</li>
+      <li>List item
+        <ul>
+          <li>Nested list item</li>
+          <li>Nested list item</li>
+          <li>Nested list item</li>
+        </ul>
+      </li>
+      <li>List item</li>
+      <li>List item</li>
+      <li>List item</li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-6 columns">
+  <h4>HTML</h4>
+  <pre><code class="language-html"><div class="code-container"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"circle"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item with a much longer description or more content.<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item
+    <span class="tag">&lt;<span class="title">ul</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span>Nested List Item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span>Nested List Item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span>Nested List Item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+ <span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></code></pre>
+
+  </div>
+  <div class="large-6 columns">
+    <h4>Rendered HTML</h4>
+    <ul class="circle">
+      <li>List item with a much longer description or more content.</li>
+      <li>List item</li>
+      <li>List item
+        <ul>
+          <li>Nested List Item</li>
+          <li>Nested List Item</li>
+          <li>Nested List Item</li>
+        </ul>
+      </li>
+      <li>List item</li>
+      <li>List item</li>
+      <li>List item</li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-6 columns">
+  <h4>HTML</h4>
+  <pre><code class="language-html"><div class="code-container"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"square"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item with a much longer description or more content.<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item
+    <span class="tag">&lt;<span class="title">ul</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span>Nested List Item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span>Nested List Item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span>Nested List Item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+ <span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></code></pre>
+
+  </div>
+  <div class="large-6 columns">
+    <h4>Rendered HTML</h4>
+    <ul class="square">
+      <li>List item with a much longer description or more content.</li>
+      <li>List item</li>
+      <li>List item
+        <ul>
+          <li>Nested List Item</li>
+          <li>Nested List Item</li>
+          <li>Nested List Item</li>
+        </ul>
+      </li>
+      <li>List item</li>
+      <li>List item</li>
+      <li>List item</li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-6 columns">
+  <h4>HTML</h4>
+  <pre><code class="language-html"><div class="code-container"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"no-bullet"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item with a much longer description or more content.<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item
+    <span class="tag">&lt;<span class="title">ul</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span>Nested List Item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span>Nested List Item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span>Nested List Item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+ <span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></code></pre>
+
+  </div>
+  <div class="large-6 columns">
+    <h4>Rendered HTML</h4>
+    <ul class="no-bullet">
+      <li>List item with a much longer description or more content.</li>
+      <li>List item</li>
+      <li>List item
+        <ul>
+          <li>Nested List Item</li>
+          <li>Nested List Item</li>
+          <li>Nested List Item</li>
+        </ul>
+      </li>
+      <li>List item</li>
+      <li>List item</li>
+      <li>List item</li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="large-6 columns">
+  <h4>HTML</h4>
+  <pre><code class="language-html"><div class="code-container"><span class="tag">&lt;<span class="title">ol</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item with a much longer description or more content.<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item
+    <span class="tag">&lt;<span class="title">ol</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span>Nested List Item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span>Nested List Item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span>Nested List Item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">ol</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span>List item<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+ <span class="tag">&lt;/<span class="title">ol</span>&gt;</span></div></code></pre>
+
+  </div>
+  <div class="large-6 columns">
+    <h4>Rendered HTML</h4>
+    <ol>
+      <li>List item with a much longer description or more content.</li>
+      <li>List item</li>
+      <li>List item
+        <ol>
+          <li>Nested List Item</li>
+          <li>Nested List Item</li>
+          <li>Nested List Item</li>
+        </ol>
+      </li>
+      <li>List item</li>
+      <li>List item</li>
+      <li>List item</li>
+    </ol>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="large-6 columns">
+  <h4>HTML</h4>
+  <pre><code class="language-html"><div class="code-container"><span class="tag">&lt;<span class="title">dl</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">dt</span>&gt;</span>Definition Title<span class="tag">&lt;/<span class="title">dt</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">dd</span>&gt;</span>Definition Cras justo odio, dapibus ac facilisis in, egestas eget quam. Nullam id dolor id nibh ultricies vehicula ut id elit.<span class="tag">&lt;/<span class="title">dd</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">dl</span>&gt;</span></div></code></pre>
+
+  </div>
+  <div class="large-6 columns">
+    <h4>Rendered HTML</h4>
+    <dl>
+      <dt>Definition Title</dt>
+      <dd>Definition Cras justo odio, dapibus ac facilisis in, egestas eget quam. Nullam id dolor id nibh ultricies vehicula ut id elit.</dd>
+    </dl>
+  </div>
+</div>
+
+<hr/>
+<p><a name="blockquotes"></a></p>
+<h3 id="blockquotes1">Blockquotes</h3>
+<p>Sometimes other people say smart things, and you may want to mention that through a blockquote callout. We've got you covered.</p>
+<div class="row">
+  <div class="large-6 columns">
+  <h4>HTML</h4>
+<pre><code class="language-html"><div class="code-container"><span class="tag">&lt;<span class="title">blockquote</span>&gt;</span>Those people who think they know everything are a great annoyance to those of us who do.<span class="tag">&lt;<span class="title">cite</span>&gt;</span>Isaac Asimov<span class="tag">&lt;/<span class="title">cite</span>&gt;</span><span class="tag">&lt;/<span class="title">blockquote</span>&gt;</span></div></code></pre>
+
+  </div>
+  <div class="large-6 columns">
+  <h4>Rendered HTML</h4>
+        <blockquote>Those people who think they know everything are a great annoyance to those of us who do.<cite>Isaac Asimov</cite></blockquote>
+  </div>
+</div>
+
+<hr/>
+<h3 id="v-cards">V-Cards</h3>
+<p>Here's a handy microformat-friendly list to <em>address</em> all your needs.</p>
+<div class="row">
+  <div class="large-6 columns">
+  <h4>HTML</h4>
+<pre><code class="language-html"><div class="code-container"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"vcard"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"fn"</span>&gt;</span>Gaius Baltar<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"street-address"</span>&gt;</span>123 Colonial Ave.<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"locality"</span>&gt;</span>Caprica City<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"state"</span>&gt;</span>Caprica<span class="tag">&lt;/<span class="title">span</span>&gt;</span>, <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"zip"</span>&gt;</span>12345<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"email"</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>g.baltar@example.com<script cf-hash="f9e31" type="text/javascript">
+/* <![CDATA[ */!function(){try{var t="currentScript"in document?document.currentScript:function(){for(var t=document.getElementsByTagName("script"),e=t.length;e--;)if(t[e].getAttribute("cf-hash"))return t[e]}();if(t&&t.previousSibling){var e,r,n,i,c=t.previousSibling,a=c.getAttribute("data-cfemail");if(a){for(e="",r=parseInt(a.substr(0,2),16),n=2;a.length-n;n+=2)i=parseInt(a.substr(n,2),16)^r,e+=String.fromCharCode(i);e=document.createTextNode(e),c.parentNode.replaceChild(e,c)}}}catch(u){}}();/* ]]> */</script><span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></code></pre>
+
+  </div>
+  <div class="large-6 columns">
+  <h4>Rendered HTML</h4>
+      <div class="type-demo">
+            <ul class="vcard">
+  <li class="fn">Gaius Baltar</li>
+  <li class="street-address">123 Colonial Ave.</li>
+  <li class="locality">Caprica City</li>
+  <li><span class="state">Caprica</span>, <span class="zip">12345</span></li>
+  <li class="email"><a href="#">g.baltar@example.com<script cf-hash="f9e31" type="text/javascript">
+/* <![CDATA[ */!function(){try{var t="currentScript"in document?document.currentScript:function(){for(var t=document.getElementsByTagName("script"),e=t.length;e--;)if(t[e].getAttribute("cf-hash"))return t[e]}();if(t&&t.previousSibling){var e,r,n,i,c=t.previousSibling,a=c.getAttribute("data-cfemail");if(a){for(e="",r=parseInt(a.substr(0,2),16),n=2;a.length-n;n+=2)i=parseInt(a.substr(n,2),16)^r,e+=String.fromCharCode(i);e=document.createTextNode(e),c.parentNode.replaceChild(e,c)}}}catch(u){}}();/* ]]> */</script></a></li>
+</ul>
+        </div>
+  </div>
+</div>
+
+<h3 id="print-styles">Print Styles</h3>
+<p>Foundation includes print styles developed by HTML5 Boilerplate to 
+give you some basic print-specific styles. These are activated when you 
+print through a media query. It includes:</p>
+<ul>
+<li>Clearing out backgrounds, box shadows and text shadows</li>
+<li>Appending link URLs after the anchor text</li>
+<li>Bordering blockquotes and pre elements</li>
+<li>Page cleanup and window minimization</li>
+</ul>
+<p>On top of that, Foundation includes a couple of simple classes you 
+can use to control elements printing, or not printing. Simply attach <code>.show-for-print</code> to an element to only show when printing, and <code>.hide-for-print</code> to hide something when printing.</p>
+<hr/>
+<h3 id="available-scss-variables">Available SCSS Variables</h3>
+<p>We've got a ton of variables for you to use to customize your typography.</p>
+<h4 id="scss">SCSS</h4>
+<pre><code class="language-scss"><div class="code-container">$include-<span class="tag">html</span>-type-classes<span class="value">: $include-html-classes;</span>
+
+<span class="comment">// We use these to control header font styles</span>
+$<span class="tag">header</span>-<span class="attribute">font-family</span><span class="value">: <span class="string">"Helvetica Neue"</span>, <span class="string">"Helvetica"</span>, Helvetica, Arial, sans-serif;</span>
+$<span class="tag">header</span>-<span class="attribute">font-weight</span><span class="value">: bold;</span>
+$<span class="tag">header</span>-<span class="attribute">font-style</span><span class="value">: normal;</span>
+$<span class="tag">header</span>-<span class="attribute">font</span>-<span class="attribute">color</span><span class="value">: <span class="hexcolor">#222</span>;</span>
+$<span class="tag">header</span>-<span class="attribute">line-height</span><span class="value">: <span class="number">1.4</span>;</span>
+$<span class="tag">header</span>-<span class="attribute">top</span>-<span class="attribute">margin</span><span class="value">: .<span class="number">2</span>rem;</span>
+$<span class="tag">header</span>-<span class="attribute">bottom</span>-<span class="attribute">margin</span><span class="value">: .<span class="number">5</span>rem;</span>
+$<span class="tag">header</span>-<span class="attribute">text-rendering</span><span class="value">: optimizeLegibility;</span>
+
+<span class="comment">// We use these to control header font sizes</span>
+$<span class="tag">h1</span>-<span class="attribute">font-size</span><span class="value">: rem-calc(<span class="number">44</span>);</span>
+$<span class="tag">h2</span>-<span class="attribute">font-size</span><span class="value">: rem-calc(<span class="number">37</span>);</span>
+$<span class="tag">h3</span>-<span class="attribute">font-size</span><span class="value">: rem-calc(<span class="number">27</span>);</span>
+$<span class="tag">h4</span>-<span class="attribute">font-size</span><span class="value">: rem-calc(<span class="number">23</span>);</span>
+$<span class="tag">h5</span>-<span class="attribute">font-size</span><span class="value">: rem-calc(<span class="number">18</span>);</span>
+$<span class="tag">h6</span>-<span class="attribute">font-size</span><span class="value">: <span class="number">1</span>rem;</span>
+
+<span class="comment">// These control how subheaders are styled</span>
+$subheader-<span class="attribute">line-height</span><span class="value">: <span class="number">1.4</span>;</span>
+$subheader-<span class="attribute">font</span>-<span class="attribute">color</span><span class="value">: scale-color($header-font-color, $lightness: <span class="number">35</span>%);</span>
+$subheader-<span class="attribute">font-weight</span><span class="value">: <span class="number">300</span>;</span>
+$subheader-<span class="attribute">top</span>-<span class="attribute">margin</span><span class="value">: .<span class="number">2</span>rem;</span>
+$subheader-<span class="attribute">bottom</span>-<span class="attribute">margin</span><span class="value">: .<span class="number">5</span>rem;</span>
+
+<span class="comment">// A general small styling</span>
+$<span class="tag">small</span>-<span class="attribute">font-size</span><span class="value">: <span class="number">60</span>%;</span>
+$<span class="tag">small</span>-<span class="attribute">font</span>-<span class="attribute">color</span><span class="value">: scale-color($header-font-color, $lightness: <span class="number">35</span>%);</span>
+
+<span class="comment">// We use these to style paragraphs</span>
+$paragraph-<span class="attribute">font-family</span><span class="value">: inherit;</span>
+$paragraph-<span class="attribute">font-weight</span><span class="value">: normal;</span>
+$paragraph-<span class="attribute">font-size</span><span class="value">: <span class="number">1</span>rem;</span>
+$paragraph-<span class="attribute">line-height</span><span class="value">: <span class="number">1.6</span>;</span>
+$paragraph-<span class="attribute">margin-bottom</span><span class="value">: rem-calc(<span class="number">20</span>);</span>
+$paragraph-<span class="tag">aside</span>-<span class="attribute">font-size</span><span class="value">: rem-calc(<span class="number">14</span>);</span>
+$paragraph-<span class="tag">aside</span>-<span class="attribute">line-height</span><span class="value">: <span class="number">1.35</span>;</span>
+$paragraph-<span class="tag">aside</span>-<span class="attribute">font-style</span><span class="value">: italic;</span>
+$paragraph-<span class="attribute">text-rendering</span><span class="value">: optimizeLegibility;</span>
+
+<span class="comment">// We use these to style code tags</span>
+$<span class="tag">code</span>-<span class="attribute">color</span><span class="value">: scale-color($alert-color, $lightness: -<span class="number">27</span>%);</span>
+$<span class="tag">code</span>-<span class="attribute">font-family</span><span class="value">: Consolas, Liberation Mono, Courier, monospace;</span>
+$<span class="tag">code</span>-<span class="attribute">font-weight</span><span class="value">: bold;</span>
+
+<span class="comment">// We use these to style anchors</span>
+$anchor-<span class="attribute">text-decoration</span><span class="value">: none;</span>
+$anchor-<span class="attribute">font</span>-<span class="attribute">color</span><span class="value">: $primary-color;</span>
+$anchor-<span class="attribute">font</span>-<span class="attribute">color</span>-hover<span class="value">: scale-color($primary-color, $lightness: -<span class="number">14</span>%);</span>
+
+<span class="comment">// We use these to style the hr element</span>
+$<span class="tag">hr</span>-<span class="attribute">border-width</span><span class="value">: <span class="number">1</span>px;</span>
+$<span class="tag">hr</span>-<span class="attribute">border-style</span><span class="value">: solid;</span>
+$<span class="tag">hr</span>-<span class="attribute">border-color</span><span class="value">: <span class="hexcolor">#ddd</span>;</span>
+$<span class="tag">hr</span>-<span class="attribute">margin</span><span class="value">: rem-calc(<span class="number">20</span>);</span>
+
+<span class="comment">// We use these to style lists</span>
+$<span class="attribute">list-style-position</span><span class="value">: outside;</span>
+$list-side-<span class="attribute">margin</span><span class="value">: <span class="number">0</span>;</span>
+$list-nested-<span class="attribute">margin</span><span class="value">: rem-calc(<span class="number">20</span>);</span>
+$definition-list-<span class="tag">header</span>-weight<span class="value">: bold;</span>
+$definition-list-<span class="tag">header</span>-<span class="attribute">margin-bottom</span><span class="value">: .<span class="number">3</span>rem;</span>
+$definition-list-<span class="attribute">margin-bottom</span><span class="value">: rem-calc(<span class="number">12</span>);</span>
+
+<span class="comment">// We use these to style blockquotes</span>
+$<span class="tag">blockquote</span>-<span class="attribute">font</span>-<span class="attribute">color</span><span class="value">: scale-color($header-font-color, $lightness: <span class="number">35</span>%);</span>
+$<span class="tag">blockquote</span>-<span class="attribute">padding</span><span class="value">: rem-calc(<span class="number">9</span> <span class="number">20</span> <span class="number">0</span> <span class="number">19</span>);</span>
+$<span class="tag">blockquote</span>-<span class="attribute">border</span><span class="value">: <span class="number">1</span>px solid <span class="hexcolor">#ddd</span>;</span>
+$<span class="tag">blockquote</span>-<span class="tag">cite</span>-<span class="attribute">font-size</span><span class="value">: rem-calc(<span class="number">13</span>);</span>
+$<span class="tag">blockquote</span>-<span class="tag">cite</span>-<span class="attribute">font</span>-<span class="attribute">color</span><span class="value">: scale-color($header-font-color, $lightness: <span class="number">23</span>%);</span>
+$<span class="tag">blockquote</span>-<span class="tag">cite</span>-<span class="tag">link</span>-<span class="attribute">color</span><span class="value">: $blockquote-cite-font-color;</span>
+
+<span class="comment">// Acronym styles</span>
+$<span class="tag">acronym</span>-<span class="value">underline</span><span class="value">: <span class="number">1</span>px dotted <span class="hexcolor">#ddd</span>;</span>
+
+<span class="comment">// We use these to control padding and margin</span>
+$microformat-<span class="attribute">padding</span><span class="value">: rem-calc(<span class="number">10</span> <span class="number">12</span>);</span>
+$microformat-<span class="attribute">margin</span><span class="value">: rem-calc(<span class="number">0</span> <span class="number">0</span> <span class="number">20</span> <span class="number">0</span>);</span>
+
+<span class="comment">// We use these to control the border styles</span>
+$microformat-<span class="attribute">border-width</span><span class="value">: <span class="number">1</span>px;</span>
+$microformat-<span class="attribute">border-style</span><span class="value">: solid;</span>
+$microformat-<span class="attribute">border-color</span><span class="value">: <span class="hexcolor">#ddd</span>;</span>
+
+<span class="comment">// We use these to control full name font styles</span>
+$microformat-fullname-<span class="attribute">font-weight</span><span class="value">: bold;</span>
+$microformat-fullname-<span class="attribute">font-size</span><span class="value">: rem-calc(<span class="number">15</span>);</span>
+
+<span class="comment">// We use this to control the summary font styles</span>
+$microformat-summary-<span class="attribute">font-weight</span><span class="value">: bold;</span>
+
+<span class="comment">// We use this to control abbr padding</span>
+$microformat-<span class="tag">abbr</span>-<span class="attribute">padding</span><span class="value">: rem-calc(<span class="number">0</span> <span class="number">1</span>);</span>
+
+<span class="comment">// We use this to control abbr font styles</span>
+$microformat-<span class="tag">abbr</span>-<span class="attribute">font-weight</span><span class="value">: bold;</span>
+$microformat-<span class="tag">abbr</span>-<span class="attribute">font</span>-decoration<span class="value">: none;</span></div></code></pre>
+
+            </div>
+          </div>
+			</ui:define>
+		</ui:composition>
+	</body>
+</html>

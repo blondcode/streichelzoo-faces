@@ -4,22 +4,18 @@
 			  xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 			  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
-	<application>
-		<locale-config>
-			<default-locale>de</default-locale>
-			<!-- messages.properties must be copied to messages_de.properties -->
-			<supported-locale>en</supported-locale>
-			<supported-locale>de</supported-locale>
-		</locale-config>
-	</application>
 
-	<!-- don't need to declare <f:loadBundle> in every view -->
-	<!--  f:loadBundle basename="messages" var="msgs" / -->
+	<name>Foo Site Webapp</name>
 	<application>
 		<resource-bundle>
-			<base-name>messages</base-name>
-			<var>msgs</var>
+			<base-name>streichelzoo.i18n.Text</base-name>
+			<var>text</var>
 		</resource-bundle>
+		<locale-config>
+			<default-locale>en</default-locale>
+			<supported-locale>de</supported-locale>
+			<supported-locale>en</supported-locale>
+		</locale-config>
 	</application>
 
 	<application>

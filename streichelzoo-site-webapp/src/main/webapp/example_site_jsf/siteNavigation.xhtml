@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+	<head><title></title></head>
+    <body>
+        <ui:composition>
+			<li class="menu-item" role="menuitem" >
+				<a href="#">#{text.nav_goto}</a>
+				<ul class="#{menuType}" role="menubar">
+					<li class="menu-item" role="menuitem">
+						<h:link value="#{text.page} A" outcome="/example_site_jsf/pageA"/>
+					</li>
+					<li class="menu-item" role="menuitem">
+						<h:link value="#{text.page} B" outcome="/example_site_jsf/pageB"/>
+					</li>
+				</ul>
+			</li>
+			<li class="menu-item" role="menuitem">
+				<h:link value="#{text.page} C" outcome="/example_site_jsf/pageC"/>
+			</li>
+			<li class="menu-item" role="menuitem">
+				<h:link outcome="/example_site_jsf/pageLogin">
+					<i class="fa fa-user-plus"></i><span>#{msg.login_plusyou}</span>
+				</h:link>
+			</li>
+		</ui:composition>
+    </body>
+</html>

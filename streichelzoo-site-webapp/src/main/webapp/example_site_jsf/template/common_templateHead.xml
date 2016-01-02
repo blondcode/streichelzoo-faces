@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	<ui:composition>
+	
+		<meta charset="utf-8" />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+		<h:outputStylesheet name="css/foundation-sites.css" library="streichelzoo" />
+		<h:outputStylesheet name="css/font-awesome.css" library="streichelzoo" />
+		<h:outputScript name="js/jquery.js" library="streichelzoo" target="body" />
+		<h:outputScript name="js/what-input.js" library="streichelzoo" target="body" />
+		<h:outputScript name="js/foundation.js" library="streichelzoo" target="body" />
+		<h:outputScript name="js/app.js" library="streichelzoo" target="body" />
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+		<c:set var="lib" value="streichelzoo" />
+		<c:set var="favdir" value="#{request.contextPath}/javax.faces.resource/img/favicon" />
+		<link rel="apple-touch-icon" sizes="57x57" href="#{favdir}/apple-touch-icon-57x57.png?ln=#{lib}"/>
+		<link rel="apple-touch-icon" sizes="60x60" href="#{favdir}/apple-touch-icon-60x60.png?ln=#{lib}"/>
+		<link rel="apple-touch-icon" sizes="72x72" href="#{favdir}/apple-touch-icon-72x72.png?ln=#{lib}"/>
+		<link rel="apple-touch-icon" sizes="76x76" href="#{favdir}/apple-touch-icon-76x76.png?ln=#{lib}"/>
+		<link rel="apple-touch-icon" sizes="114x114" href="#{favdir}/apple-touch-icon-114x114.png?ln=#{lib}"/>
+		<link rel="apple-touch-icon" sizes="120x120" href="#{favdir}/apple-touch-icon-120x120.png?ln=#{lib}"/>
+		<link rel="apple-touch-icon" sizes="144x144" href="#{favdir}/apple-touch-icon-144x144.png?ln=#{lib}"/>
+		<link rel="apple-touch-icon" sizes="152x152" href="#{favdir}/apple-touch-icon-152x152.png?ln=#{lib}"/>
+		<link rel="apple-touch-icon" sizes="180x180" href="#{favdir}/apple-touch-icon-180x180.png?ln=#{lib}"/>
+		<link rel="icon" type="image/png" href="#{favdir}/android-chrome-144x144.png?ln=#{lib}" sizes="144x144"/>
+		<link rel="icon" type="image/png" href="#{favdir}/android-chrome-192x192.png?ln=#{lib}" sizes="192x192"/>
+		<link rel="icon" type="image/png" href="#{favdir}/favicon-16x16.png?ln=#{lib}" sizes="16x16"/>
+		<link rel="icon" type="image/png" href="#{favdir}/favicon-32x32.png?ln=#{lib}" sizes="32x32"/>
+		<link rel="icon" type="image/png" href="#{favdir}/favicon-96x96.png?ln=#{lib}" sizes="96x96"/>
+		<link rel="mask-icon" href="#{favdir}/safari-pinned-tab.svg?ln=#{lib}" color="#5bbad5"/>
+		<meta name="msapplication-TileColor" content="#da532c"/>
+		<meta name="msapplication-TileImage" content="#{favdir}/mstile-144x144.png?ln=#{lib}"/>
+		<meta name="theme-color" content="#ffffff"/>	
+    
+	</ui:composition>
+</root>

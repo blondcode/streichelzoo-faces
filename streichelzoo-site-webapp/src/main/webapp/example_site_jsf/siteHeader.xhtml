@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	>
+	<ui:composition>
+		<header id="mainhead" class="site-header" role="banner">
+
+			<div class="title-bar" data-responsive-toggle="site-navigation" data-hide-for="medium">
+				<button class="menu-icon" type="button" data-toggle=""></button>
+				<div class="title-bar-title">
+					<h:link outcome="/example_site_jsf/pageWithAside" rel="home">
+						<h:graphicImage width="100" height="10" name="img/logo.svg" 
+										library="streichelzoo" alt="Streichelzoo"/>
+					</h:link>
+				</div>
+			</div>
+
+			<nav id="site-navigation" class="main-navigation top-bar" role="navigation">
+				<div class="top-bar-left show-for-medium">
+					<ul class="menu">
+						<li class="home">
+							<h:link outcome="/example_site_jsf/pageWithAside" rel="home" style="padding:0;">
+								<h:graphicImage width="100" height="15" name="img/logo.svg" library="streichelzoo" alt="Streichelzoo"/>
+							</h:link>
+						</li>
+					</ul>
+				</div>
+				<div class="top-bar-right">
+					<ul id="menu-main-menu" class="dropdown menu show-for-medium" data-dropdown-menu="" role="menubar" style="min-width:210px;">
+						<ui:include src="/example_site_jsf/siteNavigation.xhtml">
+							<ui:param name="menuType" value="menu vertical dropdown"/>
+						</ui:include>
+					</ul>
+					<ul class="vertical menu show-for-small-only" data-accordion-menu="" role="menubar" >
+						<ui:include src="/example_site_jsf/siteNavigation.xhtml">
+							<ui:param name="menuType" value="menu vertical nested"/>
+						</ui:include>
+					</ul>
+				</div>
+			</nav>
+
+			<!-- example for additional content, needs extra css 
+			<div class="site-subheader">
+				<div class="row">
+					<div class="large-6 columns">
+						<a id="sidebarButton" class="sidebar-button show-for-small" href="#sidebar">
+							<img src="..." alt="Menu wht"/>
+							<h4>Forum</h4>
+						</a>
+						<h2 class="hide-for-small">
+							<a title="Forum" href="http://foobar/forum"> Forum </a>
+						</h2>
+					</div>
+					<div class="large-6 columns">
+						<ul class="subnav hide-for-small">
+							<li>
+								<a id="joyride-feed" class="current" href="/forum">Feed</a>
+							</li>
+							<li>
+								<a id="joyride-myforum" href="/forum/myforum">My Forum</a>
+							</li>
+							<li>
+								<a id="joyride-create-post" href="/forum/posts/new">Create Post</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<a href="http://katerkamp.de/" id="notice">
+					<div class="info">
+						<hr/>
+						<h5>#{msg.welcome} Ich bin die Info-Zeile in 2 hr eingebettet.</h5>
+						<hr/>
+					</div>
+				</a>
+			</div>
+			-->
+		</header>
+
+	</ui:composition>
+</html>

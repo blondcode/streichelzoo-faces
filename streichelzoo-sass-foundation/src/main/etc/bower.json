@@ -9,7 +9,8 @@
   "homepage": "http://katerkamp.de/streichelzoo",
   "dependencies": {
     "foundation-sites": "${bower.foundation-sites.version}",
-    "motion-ui": "${bower.motion-ui.version}"
+    "motion-ui": "${bower.motion-ui.version}",
+	"browser-sync-client": "2.4.1"
   },
   "ignore": [
     "**/.*",

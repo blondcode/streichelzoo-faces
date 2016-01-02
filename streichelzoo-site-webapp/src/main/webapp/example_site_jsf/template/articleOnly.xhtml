@@ -1,0 +1,37 @@
+<!DOCTYPE html [
+	<!ENTITY copy "&#169;"> 
+	<!ENTITY nbsp "&#160;"> 
+	<!ENTITY bull "&#8226;"> 
+	<!ENTITY euro "&#8364;"> 
+	<!ENTITY quot "&#34;"> 
+	]>
+	<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml"   
+		  xmlns:h="http://java.sun.com/jsf/html"
+		  xmlns:ui="http://java.sun.com/jsf/facelets"
+		  xmlns:f="http://xmlns.jcp.org/jsf/core"
+		  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+		  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+		<h:head>
+			<title>Streichelzoo | site layout template</title>
+			<meta name="description" content="This is the example site home page." />
+			<ui:include src="common_templateHead.xml"/>
+		</h:head>
+		<!-- see 
+			http://foundation.zurb.com/forum/posts/34764-can-i-use-semantic-html5-tags-instead-of-div
+		-->
+		<h:body>
+			<ui:include src="/example_site_jsf/siteHeader.xhtml" />
+
+			<div class="row">
+				<div class="small-11 small-centered columns">
+					<article>
+						<ui:insert name="article" >
+							<h1>Article goes here...</h1>
+						</ui:insert>
+					</article>
+				</div>
+			</div>
+
+			<ui:include src="/example_site_jsf/siteFooter.xhtml"/>
+		</h:body>
+	</html>

@@ -168,5 +168,12 @@
 			<artifactId>streichelzoo-fonts-iconic</artifactId>
 			<version>0.95-SNAPSHOT</version>
 		</dependency>
+		<!--
+		<dependency>
+			<groupId>de.katerkamp.streichelzoo</groupId>
+			<artifactId>streichelzoo-faces-theme</artifactId>
+			<version>0.95-SNAPSHOT</version>
+		</dependency>
+		-->
 	</dependencies>
 </project>

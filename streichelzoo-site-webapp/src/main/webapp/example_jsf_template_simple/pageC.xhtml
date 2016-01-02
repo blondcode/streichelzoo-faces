@@ -19,16 +19,19 @@
 		</head>
 
 		<body>
-			<p>This is page A. Its a page wrapped in simple html5, so the content
+			<p>This is page C. Its a page wrapped in simple html5, so the content
 				can be viewed in a browser when called from the file system.
 				Everything outside ui:composition gets discarded when viewed by JSF.
 			</p>
 
 			<ui:composition template="template1.xhtml">
 
+				<p>This is text nested inside ui:composition, but outside the 
+					ui namespace, so it gets ignored in JSF.</p>
 				<hr/>
+				
 				<ui:define name="content">
-					<h2>&bull; This is page A content</h2>
+					<h2>&bull; This is page C content</h2>
 					<p>
 					These font-awsome fonts can only be seen per served JSF page,
 					and not per file view: </p>
