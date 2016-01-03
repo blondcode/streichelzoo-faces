@@ -11,21 +11,21 @@
 	<artifactId>streichelzoo-site-webapp</artifactId>
 	<version>0.95-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>Streichelzoo Site Webapp</name>
+	<name>${webappSiteName}</name>
 	<description />
 	<url>http://katerkamp.de/streichelzoo</url>
 
 	<properties>
 		<theme.module.dir>${basedir}/../${themeArtifactId}</theme.module.dir>
+		<virtual.host>${webappVirtualHost}</virtual.host>
+		<context.root>${webappContextRoot}</context.root>
 	</properties>
 
 	<profiles>
 		<profile>
 			<id>jetty</id>
 			<activation>
-				<file>
-					<exists>./activate-jetty-profile</exists>
-				</file>
+				<activeByDefault>true</activeByDefault>
 			</activation>
 			<dependencies>
 				<!-- javax.enterprise cdi-api does not work in Jetty, need weld here -->
@@ -46,7 +46,7 @@
 						<configuration>
 							<scanIntervalSeconds>10</scanIntervalSeconds>
 							<webApp>
-								<contextPath>/foo</contextPath>
+								<contextPath>${context.root}</contextPath>
 								<extraClasspath>${theme.module.dir}/target/classes</extraClasspath>
 							</webApp>
 							<scanTargets>
@@ -56,8 +56,8 @@
 								<port>8888</port>
 							</httpConnector>
 							<!-- cdi config, as its only a servlet container -->
-							<jettyEnvXml>src/main/webapp/WEB-INF/jetty-env.xml</jettyEnvXml>
-							<contextXml>src/main/webapp/WEB-INF/jetty-context.xml</contextXml>
+							<jettyEnvXml>src/main/WEB-INF/jetty-env.xml</jettyEnvXml>
+							<contextXml>src/main/WEB-INF/jetty-context.xml</contextXml>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -65,11 +65,6 @@
 		</profile>
 		<profile>
 			<id>wildfly</id>
-			<activation>
-				<file>
-					<missing>./activate-jetty-profile</missing>
-				</file>
-			</activation>
 			<dependencies>
 				<!-- javax.enterprise cdi-api does not work in Jetty, need weld here -->
 				<dependency>
@@ -85,11 +80,6 @@
 		</profile>
 		<profile>
 			<id>create-archetype</id>
-			<activation>
-				<file>
-					<exists>../../streichelzoo-faces/pom.xml</exists>
-				</file>
-			</activation>
 			<build>
 				<plugins>
 					<plugin>
@@ -138,6 +128,30 @@
 	</profiles>
 
 	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default-war</id>
+						<phase>package</phase>
+						<goals>
+							<goal>war</goal>
+						</goals>
+						<configuration>
+							<webResources>
+								<resource>
+									<targetPath>WEB-INF</targetPath>
+									<directory>src/main/WEB-INF</directory>
+									<filtering>true</filtering>
+								</resource>
+							</webResources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
 	</build>
 	<dependencies>
 		<dependency>
@@ -151,7 +165,6 @@
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
-			<version>1.1.0.Final</version>
 		</dependency>
 		<!-- 
 		Omnifaces 2.2 not working as it looks up BeanManager by JNDI and this is not working

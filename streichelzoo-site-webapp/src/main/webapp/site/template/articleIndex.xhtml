@@ -5,6 +5,8 @@
 	<!ENTITY euro "&#8364;"> 
 	<!ENTITY quot "&#34;"> 
 	]>
+
+	<!-- For production this template should go into WEB-INF so it is hidden -->
 	<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml"   
 		  xmlns:h="http://java.sun.com/jsf/html"
 		  xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -18,10 +20,17 @@
 			http://foundation.zurb.com/forum/posts/34764-can-i-use-semantic-html5-tags-instead-of-div
 		-->
 		<h:body>
-			<ui:include src="/example_site_jsf/common/siteHeader.xhtml" />
+			<ui:include src="/site/common/siteHeader.xhtml"/>
 
 			<div class="row">
-				<div class="small-11 small-centered columns">
+				<div class="large-3 medium-4 columns">
+					<div class="hide-for-small">
+						<section class="sidebar" id="sidebar">
+							<ui:include src="#{indexFile}"/>
+						</section>
+					</div>
+				</div>
+				<div class="large-9 medium-8 columns">
 					<article>
 						<ui:insert name="article" >
 							<h1>Article goes here...</h1>
@@ -30,6 +39,6 @@
 				</div>
 			</div>
 
-			<ui:include src="/example_site_jsf/common/siteFooter.xhtml"/>
+			<ui:include src="/site/common/siteFooter.xhtml"/>
 		</h:body>
 	</html>

@@ -4,6 +4,8 @@ streichelzoo-sass-foundation/src/main/resources
 streichelzoo-fonts-iconic/src/main/repo/*
 **/src/main/repo/
 
+.*.swp
+
 .svn
 .wtpmodules
 

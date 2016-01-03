@@ -64,7 +64,10 @@ on a Debian Jessie system.  Download the project:
 To create the project, run:
 
  cd streichelzoo-faces
- mvn install
+ mvn -Pcreate-archetype,jetty install
+
+It is important to specify either the jetty or the wildlfy profile, or the
+creation of the webapp will fail.
 
 This downloads every dependency needed and installs all jars above in the local
 repository (++$HOME/.m2/++) plus 2 archetypes:
@@ -93,31 +96,46 @@ rm -r example-site/*
 cd example-site
 
 szversion=0.95-SNAPSHOT
+myVersion=1.0-SNAPSHOT
+myGroupId=com.example.site
+myThemeArtifactId=example-site-theme
+myWebappArtifactId=example-site-demo-webapp
+myThemeName="Example Theme"
+myWebappSiteName="Example Site Demo Webapp"
+myWebappSite=example-site
+myWebappContextRoot=/demo
+myWebappVirtualHost=default-host
+myPackage=$myGroupId
 
 mvn archetype:generate -B \
  -DarchetypeGroupId=de.katerkamp.streichelzoo \
  -DarchetypeArtifactId=streichelzoo-faces-theme-archetype \
  -DarchetypeVersion=$szversion \
- -DgroupId=com.example.site \
- -DartifactId=example-site-theme \
- -Dversion=1.0-SNAPSHOT \
- -Dpackage=com.example.site
+ -DgroupId=$myGroupId \
+ -DartifactId=$myThemeArtifactId \
+ -Dversion=$myVersion \
+ -DthemeName="$myThemeName" \
+ -Dpackage=$myPackage
 
 mvn archetype:generate -B \
  -DarchetypeGroupId=de.katerkamp.streichelzoo \
  -DarchetypeArtifactId=streichelzoo-site-webapp-archetype \
  -DarchetypeVersion=$szversion \
- -DgroupId=com.example.site \
- -DartifactId=example-site-foo-webapp \
- -Dversion=1.0-SNAPSHOT \
- -Dpackage=com.example.site \
- -DthemeGroupId=com.example.site \
- -DthemeArtifactId=example-site-theme \
- -DthemeVersion=1.0-SNAPSHOT
+ -DgroupId=$myGroupId \
+ -DwebappSite=$myWebappSite \
+ -DwebappSiteName="$myWebappSiteName" \
+ -DwebappContextRoot=$myWebappContextRoot \
+ -DwebappVirtualHost=$myWebappVirtualHost \
+ -DartifactId=$myWebappArtifactId \
+ -Dversion=$myVersion \
+ -Dpackage=$myPackage \
+ -DthemeGroupId=$myGroupId \
+ -DthemeArtifactId=$myThemeArtifactId \
+ -DthemeVersion=$myVersion
 
-(cd example-site-theme; mvn install)
-cd example-site-foo-webapp
-mvn install
+(cd $myThemeArtifactId; mvn install) # or mvn -Pproduction install
+cd $myWebappArtifactId
+mvn -Pjetty install # or mvn -Pwildfly install
 mvn jetty:run
 ----
 
@@ -127,7 +145,7 @@ Edit xhtml in src/main/webapp and reload the page and see changes immediately.
 
 If you wish to edit the theme as well, open another window, then:
 
- cd $HOME/example-site/example-site-theme
+ cd $HOME/example-site/$myThemeArtifactId
  mvn fizzed-watcher:run
 
 Modify scss files, for example _example-site-theme/src/main/resources/scss/_settings.scss_.

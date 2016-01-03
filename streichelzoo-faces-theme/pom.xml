@@ -11,7 +11,7 @@
 	<artifactId>streichelzoo-faces-theme</artifactId>
 	<version>0.95-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>Streichelzoo Faces Theme</name>
+	<name>${themeName}</name>
 	<description>
 		This module assembles a JSF web jar library with a default theme,
 		consisting of CSS and JS, as well as some icons.
@@ -189,6 +189,7 @@
 					<includes>
 						<include>META-INF/**/*</include>
 						<include>bundles/**/*</include>
+						<include>streichelzoo/**/*</include>
 					</includes>
 				</configuration>
 			</plugin>
@@ -217,11 +218,6 @@
 	<profiles>
 		<profile>
 			<id>create-archetype</id>
-			<activation>
-				<file>
-					<exists>../../streichelzoo-faces/pom.xml</exists>
-				</file>
-			</activation>
 			<build>
 				<plugins>
 					<plugin>
@@ -235,6 +231,9 @@
 								<goals>
 									<goal>create-from-project</goal>
 								</goals>
+								<configuration>
+									<propertyFile>${basedir}/archetype.properties</propertyFile>
+								</configuration>
 							</execution>
 						</executions>
 					</plugin> 

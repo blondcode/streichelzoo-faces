@@ -5,3 +5,12 @@
 * Fix production and compress code.
 
 * Cleanup webapp template, add more structured examples.
+
+* example.site from archetype: provide variable for site name, edit pom.xml Display Name, fix jboss context root
+  Describe how it compiles and create jetty file for Jetty Test
+  In archetype there is scss.foundation-docs.scss dir, which is bad, remove
+
+* if deployed from archetype, it cannot find streichelzoo.i18n.Messages
+* if deployed from archetype, jboss.xml is not getting filtered
+* if deployed to wildfly, need index.xhtml
+
