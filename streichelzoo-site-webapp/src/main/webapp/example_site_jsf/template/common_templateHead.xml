@@ -5,6 +5,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 	<ui:composition>
+		<title>Streichelzoo | #{title}</title>
+		<meta name="description" content="#{description}" />
 	
 		<meta charset="utf-8" />
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />

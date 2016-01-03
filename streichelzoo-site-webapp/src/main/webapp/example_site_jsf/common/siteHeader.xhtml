@@ -12,7 +12,7 @@
 				<button class="menu-icon" type="button" data-toggle=""></button>
 				<div class="title-bar-title">
 					<h:link outcome="/example_site_jsf/pageWithAside" rel="home">
-						<h:graphicImage width="100" height="10" name="img/logo.svg" 
+						<h:graphicImage width="100" height="10" name="img/logo.svg"  style="padding-left: 20px;"
 										library="streichelzoo" alt="Streichelzoo"/>
 					</h:link>
 				</div>
@@ -29,13 +29,13 @@
 					</ul>
 				</div>
 				<div class="top-bar-right">
-					<ul id="menu-main-menu" class="dropdown menu show-for-medium" data-dropdown-menu="" role="menubar" style="min-width:210px;">
-						<ui:include src="/example_site_jsf/siteNavigation.xhtml">
+					<ul id="menu-main-menu" class="dropdown menu show-for-medium" data-dropdown-menu="" role="menubar" style="min-width:250px;">
+						<ui:include src="/example_site_jsf/common/siteNavigation.xhtml">
 							<ui:param name="menuType" value="menu vertical dropdown"/>
 						</ui:include>
 					</ul>
 					<ul class="vertical menu show-for-small-only" data-accordion-menu="" role="menubar" >
-						<ui:include src="/example_site_jsf/siteNavigation.xhtml">
+						<ui:include src="/example_site_jsf/common/siteNavigation.xhtml">
 							<ui:param name="menuType" value="menu vertical nested"/>
 						</ui:include>
 					</ul>

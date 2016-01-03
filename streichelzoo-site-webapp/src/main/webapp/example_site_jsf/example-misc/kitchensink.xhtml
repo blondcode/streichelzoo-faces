@@ -12,7 +12,8 @@
 
 	<body>
 		<!-- Note: the template path is relative to the webapp folder -->
-		<ui:composition template="/example_site_jsf/template/articleOnly.xhtml">
+		<ui:composition template="/example_site_jsf/template/articleIndex.xhtml">
+			<ui:param name="indexFile" value="/example_site_jsf/example-misc/index-aside.xhtml"/>
 			<ui:define name="article">
 				<h1 class="docs-page-title">Kitchen Sink</h1>
 				<p class="lead docs-page-lead">Everything but.</p>

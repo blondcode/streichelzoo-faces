@@ -11,9 +11,9 @@
 		<link href="streichelzoo-faces-theme/target/assets/css/foundation-sites.css" rel="stylesheet" type="text/css"/>
 	</head>
 	<body>
-		<ui:composition template="/example_site_jsf/template/articleOnly.xhtml">
+		<ui:composition template="/example_site_jsf/template/articleIndex.xhtml">
+			<ui:param name="indexFile" value="/example_site_jsf/example-layouts/index-aside.xhtml"/>
 			<ui:define name="article">
-
 				<div class="callout large primary">
 					<div class="row column text-center">
 						<h1>Our Great Blog</h1>

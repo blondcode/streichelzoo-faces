@@ -1,0 +1,134 @@
+#!/bin/bash -u
+
+# adoc2facelet -- Convert asciidoctor to facelet xhtml
+#
+# Copyright (c) 2016 Stefan Katerkamp <stefan@katerkamp.de>
+
+usage() {
+        cat <<EOR
+Usage:
+ adoc2facelet <file.ad>
+
+EOR
+}
+
+longopts=""
+shortopts="v"
+options=$(getopt --options "$shortopts" --long "$longopts" -n "adoc2facelet" -- "$@") || usage
+eval set -- "$options"
+
+jsftemplate="/example_site_jsf/template/articleOnly.xhtml"
+
+loglevel="INFO"
+
+while true; do
+  case "$1" in
+   -v) loglevel="CONFIG"; shift;;
+   --) shift; break ;;
+    *) echo "$0 error: Option $1 not implemented."; exit 99;;
+  esac
+done
+[ -n "${1+1}" ] && [[ $1 = "--" ]] && shift
+cliargs="$@"
+
+tmpdir=$(mktemp -d "${TMPDIR:-/tmp}"/adoc2facelet.XXXX)
+trap "rm -rf $tmpdir" EXIT
+set -e
+
+msg() {
+  echo $* > /dev/stderr
+}
+
+preamble() {
+  template=$1
+  title=$2
+  cat<<EOR
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets"><head><title>$title</title></head>
+  <body>
+    <ui:composition template="$template">
+EOR
+}
+
+postamble() {
+  cat<<EOR
+      </ui:define>
+    </ui:composition>
+  </body>
+</html>
+EOR
+}
+
+getTitle() {
+  xmlstarlet sel -N n="http://www.w3.org/1999/xhtml" -t -v "/n:html/n:head/n:title" $1
+}
+
+getToc() {
+  xmlstarlet sel -N n="http://www.w3.org/1999/xhtml" -t \
+   -c "/n:html/n:body/n:div/n:div[@id='toc' and @class='toc']" $1 || true
+}
+
+# todo remove <div id="toc" class="toc"> and change ul to <ul class="sectlevel1 vertical menu" data-magellan="">
+removeToc() {
+  xmlstarlet ed --inplace -N n="http://www.w3.org/1999/xhtml" \
+   --delete "/n:html/n:body/n:div/n:div[@id='toc' and @class='toc']/descendant::*" $1 || true
+}
+
+removeFooter() {
+  xmlstarlet ed --inplace -N n="http://www.w3.org/1999/xhtml" \
+   --delete  "/n:html/n:body/n:div[@id='footer']" $1
+}
+
+getContent() {
+  xmlstarlet sel -N n="http://www.w3.org/1999/xhtml" -t \
+   -c "/n:html/n:body[@class='article']/*" $1
+}
+
+convert() {
+  adf=$(basename $1 .ad)
+
+  adargs="--out-file=- -b xhtml5 -a linkcss -a stylesheet=adfoundation.css?ln=streichelzoo \
+   -a iconfont-remote! \
+   -a iconfont-name=../streichelzoo/css/font-awesome \
+   -a stylesdir=javax.faces.resource/css"
+
+   msg Processing $adf.ad
+   asciidoctor $adargs $adf.ad > $tmpdir/$adf.xhtml
+   title=$(getTitle $tmpdir/$adf.xhtml)
+   tocxml=$(getToc $tmpdir/$adf.xhtml)
+
+   msg  Title: $title
+
+   preamble $jsftemplate "$title"
+   echo "<ui:param name=\"title\" value=\"${title}\"/>"
+   echo '<ui:define name="article">'
+
+#   if [ -z "$tocxml" ]; then
+#	msg No TOC.
+#   	echo '<!-- no toc -->'
+#   else
+#	# todo insert this where it was plus surronding tags
+#	removeToc $tmpdir/$adf.xhtml
+#   	echo '<!-- toc -->'
+#  	echo '<div class="large-3 columns" data-sticky-container="">'
+#  	echo '<nav class="columns" data-sticky="" data-anchor="content" data-sticky-on="large">'
+#   	echo $tocxml
+#	echo '</nav></div>'
+#   fi
+
+   removeFooter $tmpdir/$adf.xhtml
+
+   echo '<!-- content -->'
+   getContent $tmpdir/$adf.xhtml
+   echo '<!-- postamble -->'
+   postamble
+}
+
+
+for adfile in $cliargs; do
+	convert $adfile
+done
+exit 0
+
