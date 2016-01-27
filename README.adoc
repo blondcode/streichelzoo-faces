@@ -66,7 +66,12 @@ To create the project, run:
  cd streichelzoo-faces
  mvn -Pcreate-archetype,jetty install
 
-It is important to specify either the jetty or the wildlfy profile, or the
+or
+
+ cd streichelzoo-faces
+ mvn -Pcreate-archetype,wildfly install
+
+It is important to specify either the jetty or the wildfly profile, or the
 creation of the webapp will fail.
 
 This downloads every dependency needed and installs all jars above in the local
@@ -84,13 +89,14 @@ and the theme needs to be recompiled, and the resulting war file redeployed.
 == Web Page Development Example
 
 Suppose we want to create a common theme for site _example.com_, which is mapped to 
-virtual host _default-host_.  The context root is _/foo_. (See ++jboss-web.xml++ for 
+virtual host _default-host_.  The context root is _/demo_. (See ++jboss-web.xml++ for 
 Wildfly and ++pom.xml++ contextPath for Jetty.) The current streichelzoo-faces
 version is _0.94_ and the resulting webapp shall have version
 _1.0-SNAPSHOT_. Then, open a shell window and execute these commands:
 
 ----
 cd $HOME
+
 mkdir example-site
 rm -r example-site/*
 cd example-site
@@ -133,9 +139,9 @@ mvn archetype:generate -B \
  -DthemeArtifactId=$myThemeArtifactId \
  -DthemeVersion=$myVersion
 
-(cd $myThemeArtifactId; mvn install) # or mvn -Pproduction install
+(cd $myThemeArtifactId; mvn clean install) # or mvn -Pproduction install
 cd $myWebappArtifactId
-mvn -Pjetty install # or mvn -Pwildfly install
+mvn -Pjetty clean install # or mvn -Pwildfly install
 mvn jetty:run
 ----
 
