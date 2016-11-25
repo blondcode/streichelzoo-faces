@@ -3,9 +3,10 @@ var gulp = require('gulp');
 
 var $ = require('gulp-load-plugins')();
 
+// root dir will be target/classes and there maven remote resources are available
 var sassPaths = [
-	'bower_components/foundation-sites/scss',
-	'bower_components/motion-ui/src',
+	'foundation-sites/scss',
+	'motion-ui/src',
 	'asciidoctor/scss'
 ];
 

@@ -4,13 +4,13 @@
 	<parent>
 		<groupId>de.katerkamp.streichelzoo</groupId>
 		<artifactId>project</artifactId>
-		<version>0.95-SNAPSHOT</version>
+		<version>6.2.4.1-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
 	<groupId>de.katerkamp.streichelzoo</groupId>
-	<artifactId>streichelzoo-sass-asciidoc</artifactId>
+	<artifactId>streichelzoo-resource-asciidoc</artifactId>
 	<packaging>jar</packaging>
-	<name>Streichelzoo Sass Asciidoc</name>
+	<name>Streichelzoo Resource Asciidoc</name>
 	<description>
 		This module contains Ascidoctor Sass compatible with Foundation 6 and 
 		creates a Maven remote resource bundle. Code has been derived from

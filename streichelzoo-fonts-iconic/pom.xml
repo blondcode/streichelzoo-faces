@@ -4,12 +4,12 @@
 	<parent>
 		<groupId>de.katerkamp.streichelzoo</groupId>
 		<artifactId>project</artifactId>
-		<version>0.95-SNAPSHOT</version>
+		<version>1.6.2</version>
 		<relativePath>..</relativePath>
 	</parent>
 	<groupId>de.katerkamp.streichelzoo</groupId>
 	<artifactId>streichelzoo-fonts-iconic</artifactId>
-	<version>0.95-SNAPSHOT</version>
+	<version>1.6.2</version>
 	<packaging>jar</packaging>
 	<name>Streichelzoo Fonts Iconic</name>
 	<description>
@@ -48,6 +48,25 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-remote-resources-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>bundle</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<resourcesDirectory>${repo.dir}</resourcesDirectory>
+					<includes>
+						<include>**/*</include>
+						<include>**/*.*</include>
+					</includes>
+				</configuration>
 			</plugin>
 			<!-- copy what we can into proper tree position in outputDirectory -->
 			<plugin>

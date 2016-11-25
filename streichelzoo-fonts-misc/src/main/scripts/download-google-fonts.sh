@@ -24,6 +24,12 @@ families+=('Lobster:400')
 families+=('Courgette:400')
 families+=('Permanent Marker:400')
 families+=('Playball:400')
+families+=('Droid Sans Mono:400')
+families+=('Noto Serif:400')
+families+=('Noto Serif:700')
+families+=('Noto Serif Italic:400')
+families+=('Noto Serif Italic:700')
+families+=('Noto Serif Bold Italic:700')
 }
 
 skatfonts

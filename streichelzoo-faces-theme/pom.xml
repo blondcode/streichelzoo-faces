@@ -4,15 +4,20 @@
 	<parent>
 		<groupId>de.katerkamp.streichelzoo</groupId>
 		<artifactId>project</artifactId>
-		<version>0.95-SNAPSHOT</version>
+		<version>6.2.4.1-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
 	<groupId>de.katerkamp.streichelzoo</groupId>
 	<artifactId>streichelzoo-faces-theme</artifactId>
-	<version>0.95-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>${themeName}</name>
+	<!-- todo rename this to streichelzoo-styles -->
 	<description>
+		This modules creates CSS and JS from shared resources, for
+		use with JSF projects.
+		Compilation is all done with gulp which gets provided
+		by an artifact.
+		Rules are stored in gulpfile.js.
 		This module assembles a JSF web jar library with a default theme,
 		consisting of CSS and JS, as well as some icons.
 		It takes Sass files from streichelzoo-faces shared resources and 
@@ -23,8 +28,6 @@
 	<url>http://katerkamp.de/streichelzoo</url>
 
 	<properties>
-		<szf.version>0.95-SNAPSHOT</szf.version>
-		<sza.version>0.95-SNAPSHOT</sza.version>
 		<shres.dir>${project.build.directory}/maven-shared-archive-resources</shres.dir>
 		<gulp.src>${basedir}/src/main/resources/scss/**/*.scss</gulp.src>
 		<gulp.dest>${project.build.directory}/assets/css</gulp.dest>
@@ -39,8 +42,8 @@
 				<version>1.5</version>
 				<configuration>
 					<resourceBundles>
-						<resourceBundle>de.katerkamp.streichelzoo:streichelzoo-sass-foundation:${szf.version}</resourceBundle>
-						<resourceBundle>de.katerkamp.streichelzoo:streichelzoo-sass-asciidoc:${sza.version}</resourceBundle>
+						<resourceBundle>de.katerkamp.streichelzoo:streichelzoo-resource-remote:${project.version}</resourceBundle>
+						<resourceBundle>de.katerkamp.streichelzoo:streichelzoo-resource-asciidoc:${project.version}</resourceBundle>
 					</resourceBundles>
 				</configuration>
 				<executions>
@@ -152,7 +155,7 @@
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
-				<version>0.0.26</version>
+				<version>1.2</version>
 				<configuration>
 					<workingDirectory>${shres.dir}</workingDirectory>
 				</configuration>
@@ -169,6 +172,7 @@
 					</execution>
 				</executions>
 			</plugin>
+
 			
 			<!-- now all css and js is in target/assets -->
 			<!-- copy and optinally compress css and js -->
@@ -268,13 +272,13 @@
 	<dependencies>
 		<dependency>
 			<groupId>de.katerkamp.streichelzoo</groupId>
-			<artifactId>streichelzoo-sass-foundation</artifactId>
-			<version>${szf.version}</version>
+			<artifactId>streichelzoo-resource-remote</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>de.katerkamp.streichelzoo</groupId>
-			<artifactId>streichelzoo-sass-asciidoc</artifactId>
-			<version>${sza.version}</version>
+			<artifactId>streichelzoo-resource-asciidoc</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 	

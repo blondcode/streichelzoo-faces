@@ -212,6 +212,69 @@ Then install:
 
 To set a new version, specify a local property version per artifact and use this:
 
- mvn versions:set -DnewVersion=0.95-SNAPSHOT
- mvn versions:update-properties -DnewVersion=0.95-SNAPSHOT
+ mvn versions:set -DnewVersion=1.6.2
+ mvn versions:update-properties -DnewVersion=1.6.2
+ mvn versions:commit
 ////
+
+
+== Upgrade to new Foundation Version
+
+See https://github.com/zurb/foundation-sites-template//bower.json
+for foundation sites and motion-ui version. These numbers go into
+pom.xml bower.foundation-sites.version and bower.motion-ui.version.
+
+Get latest Node Version:
+
+ https://nodejs.org/en/
+
+Get latest npm version:
+
+https://github.com/npm/npm
+
+Get latest frontend-maven-plugin version.
+
+Edit this in pom.xml.
+
+Remove sources:
+
+ mvn -P ZapResources clean
+
+Install
+
+ mvn install
+
+Note that for 6.2.0 
+./streichelzoo-sass-foundation/src/main/resources/bower_components/foundation-sites/.babelrc
+had to be patched to this:
+
+----
+{
+	"plugins": [
+  	"transform-es2015-arrow-functions",
+  	"transform-es2015-block-scoped-functions",
+  	"transform-es2015-block-scoping",
+  	"transform-es2015-classes",
+  	"transform-es2015-destructuring",
+  	"transform-es2015-template-literals",
+  	"transform-es2015-parameters",
+		"transform-es2015-shorthand-properties",
+  	"transform-es2015-spread",
+    ["transform-es2015-modules-commonjs", {
+      "allowTopLevelThis": true
+    }]
+  ],
+  "compact": false
+}
+----
+
+== Run by hand
+
+To globally install all required gulp modules:
+
+mvn install
+cd streichelzoo-faces-theme/target/classes/foundation-sites
+sudo npm install
+gulp build
+
+

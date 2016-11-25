@@ -4,12 +4,12 @@
 	<parent>
 		<groupId>de.katerkamp.streichelzoo</groupId>
 		<artifactId>project</artifactId>
-		<version>0.95-SNAPSHOT</version>
+		<version>1.6.2</version>
 		<relativePath>..</relativePath>
 	</parent>
 	<groupId>de.katerkamp.streichelzoo</groupId>
 	<artifactId>streichelzoo-fonts-misc</artifactId>
-	<version>0.95-SNAPSHOT</version>
+	<version>1.6.2</version>
 	<packaging>jar</packaging>
 	<name>Streichelzoo Fonts Misc</name>
 	<description>

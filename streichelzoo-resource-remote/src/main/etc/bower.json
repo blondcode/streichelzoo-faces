@@ -1,6 +1,6 @@
 {
   "name": "streichelzoo-faces-foundation",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "authors": [
     "Stefan Katerkamp <stefan@katerkamp.de>"
   ],
@@ -10,7 +10,7 @@
   "dependencies": {
     "foundation-sites": "${bower.foundation-sites.version}",
     "motion-ui": "${bower.motion-ui.version}",
-	"browser-sync-client": "2.4.1"
+    "browser-sync-client": "2.4.1"
   },
   "ignore": [
     "**/.*",
