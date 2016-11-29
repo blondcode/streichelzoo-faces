@@ -1,7 +1,7 @@
 # Streichelzoo specifics
-streichelzoo-sass-foundation/src/main/resources
+sz-shared-build-resources/src/main/resources
 **/skatintern
-streichelzoo-fonts-iconic/src/main/repo/*
+sz-fonts-iconic/src/main/repo/*
 **/src/main/repo/
 
 .*.swp
