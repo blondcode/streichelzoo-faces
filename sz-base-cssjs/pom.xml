@@ -172,6 +172,12 @@
 			<artifactId>szoo-shared-build-resources</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<!--
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>javax.faces-api</artifactId>
+		</dependency>
+		-->
 	</dependencies>
 	
 </project>

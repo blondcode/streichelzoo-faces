@@ -27,6 +27,7 @@
 		<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
 		<param-value>true</param-value>
 	</context-param>
+	<!-- deprecated javax.faces.FACELETS_RESOURCE_RESOLVER use ResourceHandler, see faces-config.xml -->
 	<session-config>
 		<session-timeout>10</session-timeout>
 	</session-config>

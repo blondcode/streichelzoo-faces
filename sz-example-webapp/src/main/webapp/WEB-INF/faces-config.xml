@@ -26,7 +26,7 @@
 	<!--
 		<resource-handler>de.katerkamp.szoo.resourcehandler.FilesystemAdocResourceHandler</resource-handler>  
 		-->
-		<!--
+	<!--
 		<resource-handler>de.katerkamp.streichelzoo.UnmappedResourceHandler</resource-handler>  
 		-->
 		<resource-handler>org.omnifaces.resourcehandler.UnmappedResourceHandler</resource-handler>  

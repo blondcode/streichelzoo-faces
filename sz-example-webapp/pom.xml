@@ -4,12 +4,11 @@
 	<parent>
 		<groupId>de.katerkamp.streichelzoo</groupId>
 		<artifactId>project</artifactId>
-		<version>1.6.2</version>
+		<version>6.2.4.1-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
 	<groupId>de.katerkamp.streichelzoo</groupId>
 	<artifactId>sz-example-webapp</artifactId>
-	<version>1.6.2</version>
 	<packaging>war</packaging>
 	<name>Streichelzoo Example Webapp</name>
 	<description />
@@ -23,107 +22,24 @@
 
 	<profiles>
 		<profile>
-			<id>jetty</id>
+			<id>wildfly</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<dependencies>
 				<!-- javax.enterprise cdi-api does not work in Jetty, need weld here -->
 				<dependency>
-					<groupId>org.jboss.weld.servlet</groupId>
-					<artifactId>weld-servlet</artifactId>
-					<version>2.3.2.Final</version>
-				</dependency>
-			</dependencies>
-			<build>
-				<plugins>
-					<!-- Jetty servlet container -->
-					<!-- mvn jetty:run -->
-					<plugin>
-						<groupId>org.eclipse.jetty</groupId>
-						<artifactId>jetty-maven-plugin</artifactId>
-						<version>9.3.6.v20151106</version>
-						<configuration>
-							<scanIntervalSeconds>10</scanIntervalSeconds>
-							<webApp>
-								<contextPath>${context.root}</contextPath>
-								<extraClasspath>${theme.module.dir}/target/classes</extraClasspath>
-							</webApp>
-							<scanTargets>
-								<scanTarget>${theme.module.dir}/target/watcher.txt</scanTarget>
-							</scanTargets>
-							<httpConnector>
-								<port>8888</port>
-							</httpConnector>
-							<!-- cdi config, as its only a servlet container -->
-							<jettyEnvXml>src/main/WEB-INF/jetty-env.xml</jettyEnvXml>
-							<contextXml>src/main/WEB-INF/jetty-context.xml</contextXml>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>wildfly</id>
-			<dependencies>
-				<!-- javax.enterprise cdi-api does not work in Jetty, need weld here -->
-				<dependency>
 					<groupId>javax.enterprise</groupId>
 					<artifactId>cdi-api</artifactId>
 				</dependency>
+				<!--
 				<dependency>
 					<groupId>${themeGroupId}</groupId>
 					<artifactId>${themeArtifactId}</artifactId>
 					<version>${themeVersion}</version>
 				</dependency>
+				-->
 			</dependencies>
-		</profile>
-		<profile>
-			<id>create-archetype</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-archetype-plugin</artifactId>
-						<version>2.4</version>	
-						<executions>
-							<execution>
-								<id>create archetype</id>
-								<phase>package</phase>
-								<goals>
-									<goal>create-from-project</goal>
-								</goals>
-								<configuration>
-									<propertyFile>${basedir}/archetype.properties</propertyFile>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin> 
-					<!-- install archetype jar in repo -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-install-plugin</artifactId>
-						<version>2.5.2</version>
-						<executions>
-							<execution>
-								<id>install archetype</id>
-								<phase>package</phase>
-								<goals>
-									<goal>install-file</goal>
-								</goals>
-								<configuration>
-									<file>${project.build.directory}/generated-sources/archetype/target/${project.artifactId}-archetype-${project.version}.jar</file>
-									<groupId>${project.groupId}</groupId>
-									<artifactId>${project.artifactId}-archetype</artifactId>
-									<version>${project.version}</version>
-									<packaging>jar</packaging>
-									<pomFile>${project.build.directory}/generated-sources/archetype/pom.xml</pomFile>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
 		</profile>
 	</profiles>
 
@@ -147,6 +63,11 @@
 									<filtering>true</filtering>
 								</resource>
 							</webResources>
+							<archive>
+								<manifest>
+									<addClasspath>true</addClasspath>
+								</manifest>
+							</archive>
 						</configuration>
 					</execution>
 				</executions>
@@ -166,27 +87,19 @@
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 		</dependency>
-		<!-- 
-		Omnifaces 2.2 not working as it looks up BeanManager by JNDI and this is not working
-		in Jetty:
-		http://stackoverflow.com/questions/27666681/weld-001300-when-trying-to-lookup-beanmanager-by-jndi
-		-->
+		<!-- needed to be able to load resources from jars in war dir WEB-INF/lib -->
 		<dependency>
 			<groupId>org.omnifaces</groupId>
 			<artifactId>omnifaces</artifactId>
-			<version>1.12.1</version>
+			<version>2.5.1</version>
 		</dependency>
 		<dependency>
 			<groupId>de.katerkamp.streichelzoo</groupId>
-			<artifactId>streichelzoo-fonts-iconic</artifactId>
-			<version>1.6.2</version>
+			<artifactId>sz-fonts-iconic</artifactId>
 		</dependency>
-		<!--
 		<dependency>
 			<groupId>de.katerkamp.streichelzoo</groupId>
-			<artifactId>streichelzoo-faces-theme</artifactId>
-			<version>0.95-SNAPSHOT</version>
+			<artifactId>sz-base-cssjs</artifactId>
 		</dependency>
-		-->
 	</dependencies>
 </project>

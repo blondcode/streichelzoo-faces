@@ -4,12 +4,11 @@
 	<parent>
 		<groupId>de.katerkamp.streichelzoo</groupId>
 		<artifactId>project</artifactId>
-		<version>1.6.2</version>
+		<version>6.2.4.1-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
 	<groupId>de.katerkamp.streichelzoo</groupId>
 	<artifactId>sz-fonts-misc</artifactId>
-	<version>1.6.2</version>
 	<packaging>jar</packaging>
 	<name>Streichelzoo Fonts Misc</name>
 	<description>
@@ -22,6 +21,7 @@
 			<plugin>
 				<groupId>net.alchim31.maven</groupId>
 				<artifactId>yuicompressor-maven-plugin</artifactId>
+				<version>1.5.1</version>
 				<configuration>
 					<!-- just css there, direct instead of going through build dir assets -->
 					<sourceDirectory>${project.basedir}/src/main/resources/</sourceDirectory>

@@ -1,5 +1,11 @@
 // streichelzoo specific rules for building foundation sites
 
+// this file will be copied into target/classes
+
+// resulting css and js must be placed into assets dir META-INF/resources/streichelzoo
+// where "streichelzoo" is the resource library
+
+
 var BASEDIR = '../..';  // as seen from target/classes
 
 // for logging the current file in pipe(logFile(es))
@@ -29,8 +35,8 @@ var JSFILES = ['foundation-sites/js/**/*.js',
 	'what-input/dist/what-input.js',
 	path.join(BASEDIR, 'src/main/resources/js/app.js')
 ];
-var CSSASSETSDIR = 'streichelzoo/css';
-var JSASSETSDIR = 'streichelzoo/js';
+var CSSASSETSDIR = 'META-INF/resources/streichelzoo/css';
+var JSASSETSDIR = 'META-INF/resources/streichelzoo/js';
 
 // root dir will be target/classes and there maven remote resources are available
 var sassPaths = [

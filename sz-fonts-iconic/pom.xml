@@ -4,12 +4,11 @@
 	<parent>
 		<groupId>de.katerkamp.streichelzoo</groupId>
 		<artifactId>project</artifactId>
-		<version>1.6.2</version>
+		<version>6.2.4.1-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
 	<groupId>de.katerkamp.streichelzoo</groupId>
 	<artifactId>sz-fonts-iconic</artifactId>
-	<version>1.6.2</version>
 	<packaging>jar</packaging>
 	<name>Streichelzoo Fonts Iconic</name>
 	<description>
@@ -135,9 +134,11 @@
 				</configuration>
 			</plugin>
 			<!-- copy and optionally compress css and js from assets dir to outputDirectory -->
+			<!-- todo use npm -->
 			<plugin>
 				<groupId>net.alchim31.maven</groupId>
 				<artifactId>yuicompressor-maven-plugin</artifactId>
+				<version>1.5.1</version>
 				<configuration>
 					<sourceDirectory>${project.build.directory}/assets/</sourceDirectory>
 					<outputDirectory>${project.build.outputDirectory}/META-INF/resources/streichelzoo</outputDirectory>

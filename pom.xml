@@ -77,11 +77,11 @@
 		</profile>
 	</profiles>
 	<modules>
-	 <module>sz-shared-build-resources</module>
-	 <module>sz-base-cssjs</module>
-	 <module>sz-fonts-iconic</module>
-	 <module>sz-fonts-misc</module>
-	 <module>sz-example-webapp</module>
+		<module>sz-shared-build-resources</module>
+		<module>sz-base-cssjs</module>
+		<module>sz-fonts-iconic</module>
+		<module>sz-fonts-misc</module>
+		<module>sz-example-webapp</module>
 	</modules>
 	<build>
 
@@ -295,11 +295,6 @@
 				<version>1.0</version>
 				<scope>provided</scope>
 			</dependency>
-			<dependency>
-				<groupId>org.omnifaces</groupId>
-				<artifactId>omnifaces</artifactId>
-				<version>1.12.1</version>
-			</dependency>
 			<!--
 			<dependency>
 				<groupId>javax</groupId>
@@ -354,6 +349,17 @@
 				<artifactId>validation-api</artifactId>
 				<version>1.1.0.Final</version>
 			</dependency>
+			<dependency>
+				<groupId>de.katerkamp.streichelzoo</groupId>
+				<artifactId>sz-fonts-iconic</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.katerkamp.streichelzoo</groupId>
+				<artifactId>sz-base-cssjs</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 </project>

@@ -1,5 +1,5 @@
 = Streichelzoo Faces Foundation 6 CSS and JS
 
 Builds the theme from sass and js resources. Creates a jar file for use
-as a webapp theme library.
+as a webapp theme library (web fragment jar).
 

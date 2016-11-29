@@ -13,7 +13,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
-		<h:outputStylesheet name="css/foundation-sites.css" library="streichelzoo" />
+		<h:outputStylesheet name="css/streichelzoo-everything.css" library="streichelzoo" />
 		<h:outputStylesheet name="css/font-awesome.css" library="streichelzoo" />
 		<h:outputScript name="js/jquery.js" library="streichelzoo" target="body" />
 		<h:outputScript name="js/what-input.js" library="streichelzoo" target="body" />
