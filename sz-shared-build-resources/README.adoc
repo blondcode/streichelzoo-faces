@@ -1,20 +1,10 @@
-= Streichelzoo Faces Foundation 6 CSS and JS
+= Streichelzoo Faces Maven Build Shared Resources
 
-Shared Resources Module, consisting of foundation 6 and node.js modules.
+This module downloads foundation-sites sources from Github.
+It then uses the just downloaded package.json to install 
+nodejs and dependencies.
 
-Downloads and compiles Foundation for Sites 6 using npm, bower and gulp.
-
-
-You can also do this to watch files using Browsersync:
-
-mvn install
-cd target/classes/foundation-sites
-
-sudo gem install scss-lint
-npm install
-npm start
-
-or
-
-gulp build
+All downloaded sources then will be provided as a Maven shared
+resource for use with artifact sz-base-cssjs, which builds all
+css and js.
 
