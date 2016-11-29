@@ -77,12 +77,11 @@
 		</profile>
 	</profiles>
 	<modules>
-		<module>streichelzoo-resource-remote</module>
-	 	<module>streichelzoo-resource-asciidoc</module>
-		<module>streichelzoo-fonts-iconic</module>
-		<module>streichelzoo-fonts-misc</module>
-		<module>streichelzoo-faces-theme</module>
-		<module>streichelzoo-site-webapp</module>
+	 <module>sz-shared-build-resources</module>
+	 <module>sz-base-cssjs</module>
+	 <module>sz-fonts-iconic</module>
+	 <module>sz-fonts-misc</module>
+	 <module>sz-example-webapp</module>
 	</modules>
 	<build>
 
@@ -131,38 +130,6 @@
 					</executions>
 				</plugin>
 
-
-				<plugin>
-					<groupId>net.alchim31.maven</groupId>
-					<artifactId>yuicompressor-maven-plugin</artifactId>
-					<version>1.5.1</version>
-					<executions>
-						<execution>
-							<phase>compile</phase>
-							<goals>
-								<goal>compress</goal>
-							</goals>
-						</execution>
-					</executions>        
-					<configuration>
-						<includes>
-							<include>**/js/*.js</include>
-							<include>**/css/*.css</include>
-						</includes>
-						<excludes>
-							<exclude>components/**</exclude>
-							<exclude>**/*.pack.js</exclude>
-							<exclude>**/*.min.js</exclude>
-							<exclude>**/*.min.css</exclude>
-							<exclude>**/*.pack.css</exclude>
-						</excludes>
-						<excludeResources>true</excludeResources>
-						<nosuffix>true</nosuffix>
-						<jswarn>true</jswarn>
-						<nocompress>${nocompress}</nocompress> <!-- for Development -->
-					</configuration>
-				</plugin>
-			
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
@@ -177,6 +144,7 @@
 						</archive>
 					</configuration>
 				</plugin>
+
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>

@@ -1,7 +1,0 @@
-= Streichelzoo Faces Foundation 6 CSS and JS
-
-Shared Resources Module, consisting of foundation 6 and node.js modules.
-
-Downloads and compiles Foundation for Sites 6 using npm, bower and gulp.
-
-

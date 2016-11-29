@@ -1,0 +1,11 @@
+@font-face {
+        font-family: 'Droid Sans Mono';
+        font-style:  normal;
+        font-weight: 400;
+        src: url("#{resource['streichelzoo:fonts/DroidSansMono/DroidSansMono.eot']}");
+        src: url("#{resource['streichelzoo:fonts/DroidSansMono/DroidSansMono.eot']}?#iefix") format('embedded-opentype'),
+             url("#{resource['streichelzoo:fonts/DroidSansMono/DroidSansMono.woff']}") format('woff'),
+             url("#{resource['streichelzoo:fonts/DroidSansMono/DroidSansMono.ttf']}") format('truetype'),
+             url("#{resource['streichelzoo:fonts/DroidSansMono/DroidSansMono.svg']}#DroidSansMono") format('svg');
+}
+

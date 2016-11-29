@@ -1,0 +1,220 @@
+= Streichelzoo-Faces: Using Artifacts
+
+This is old documentation and not up to date. Needs revision.
+
+== Setup
+
+Make sure Maven 3.1.0 or higher is installed, see note below how to install this
+on a Debian Jessie system.  Download the project:
+
+ git clone https://github.com/skaterkamp/streichelzoo-faces.git
+
+To create the project, run:
+
+ cd streichelzoo-faces
+ mvn -Pcreate-archetype,jetty install
+
+or
+
+ cd streichelzoo-faces
+ mvn -Pcreate-archetype,wildfly install
+
+It is important to specify either the jetty or the wildfly profile, or the
+creation of the webapp will fail.
+
+This downloads every dependency needed and installs all jars above in the local
+repository (++$HOME/.m2/++) plus 2 archetypes:
+
+* streichelzoo-faces-theme-archetype
+* streichelzoo-site-webapp-archetype
+
+These archetypes contain a starter JSF2.2 webapp with a style and JavaScript framework
+packaged as separate modules. This way, multiple web applications may share the
+same framework. In case of updates, for example a new Foundation for Sites version,
+the streichelzoo-sass-foundation module simply needs to be cleaned and reinstalled,
+and the theme needs to be recompiled, and the resulting war file redeployed.
+
+== Web Page Development Example
+
+Suppose we want to create a common theme for site _example.com_, which is mapped to 
+virtual host _default-host_.  The context root is _/demo_. (See ++jboss-web.xml++ for 
+Wildfly and ++pom.xml++ contextPath for Jetty.) The current streichelzoo-faces
+version is _0.94_ and the resulting webapp shall have version
+_1.0-SNAPSHOT_. Then, open a shell window and execute these commands:
+
+----
+cd $HOME
+
+mkdir example-site
+rm -r example-site/*
+cd example-site
+
+szversion=0.95-SNAPSHOT
+myVersion=1.0-SNAPSHOT
+myGroupId=com.example.site
+myThemeArtifactId=example-site-theme
+myWebappArtifactId=example-site-demo-webapp
+myThemeName="Example Theme"
+myWebappSiteName="Example Site Demo Webapp"
+myWebappSite=example-site
+myWebappContextRoot=/demo
+myWebappVirtualHost=default-host
+myPackage=$myGroupId
+
+mvn archetype:generate -B \
+ -DarchetypeGroupId=de.katerkamp.streichelzoo \
+ -DarchetypeArtifactId=streichelzoo-faces-theme-archetype \
+ -DarchetypeVersion=$szversion \
+ -DgroupId=$myGroupId \
+ -DartifactId=$myThemeArtifactId \
+ -Dversion=$myVersion \
+ -DthemeName="$myThemeName" \
+ -Dpackage=$myPackage
+
+mvn archetype:generate -B \
+ -DarchetypeGroupId=de.katerkamp.streichelzoo \
+ -DarchetypeArtifactId=streichelzoo-site-webapp-archetype \
+ -DarchetypeVersion=$szversion \
+ -DgroupId=$myGroupId \
+ -DwebappSite=$myWebappSite \
+ -DwebappSiteName="$myWebappSiteName" \
+ -DwebappContextRoot=$myWebappContextRoot \
+ -DwebappVirtualHost=$myWebappVirtualHost \
+ -DartifactId=$myWebappArtifactId \
+ -Dversion=$myVersion \
+ -Dpackage=$myPackage \
+ -DthemeGroupId=$myGroupId \
+ -DthemeArtifactId=$myThemeArtifactId \
+ -DthemeVersion=$myVersion
+
+(cd $myThemeArtifactId; mvn clean install) # or mvn -Pproduction install
+cd $myWebappArtifactId
+mvn -Pjetty clean install # or mvn -Pwildfly install
+mvn jetty:run
+----
+
+Leave this window open. 
+Open a browser and go to http://localhost:8888[]. 
+Edit xhtml in src/main/webapp and reload the page and see changes immediately.
+
+If you wish to edit the theme as well, open another window, then:
+
+ cd $HOME/example-site/$myThemeArtifactId
+ mvn fizzed-watcher:run
+
+Modify scss files, for example _example-site-theme/src/main/resources/scss/_settings.scss_.
+Wait a few seconds for the recompile to finish and reload the page in the browser.
+
+
+///// 
+not ready yet
+== Deployment for production 
+
+To create a war file for Wildfly:
+
+ cd streichelzoo-faces-template
+ mvn -P wilfly clean verify install
+
+The resulting war file is in the /target directory.
+/////
+
+
+== Note
+
+To install latest Maven in Debian Jessie:
+
+Add __deb http://http.debian.net/debian/ stretch main__ to /etc/apt/sources.list.
+
+Add to /etc/apt/preferences:
+
+----
+Package: *
+Pin: release n=stretch
+Pin-Priority: 130
+
+Package: maven
+Pin: release n=stretch
+Pin-Priority: 510
+
+Package: libmaven*
+Pin: release n=stretch
+Pin-Priority: 510
+
+Package: lib*java
+Pin: release n=stretch
+Pin-Priority: 510
+----
+
+Update and check:
+
+ aptitude update
+ apt-cache policy
+
+Then install:
+
+ aptitude install maven
+
+
+////
+== Note how to update version
+
+To set a new version, specify a local property version per artifact and use this:
+
+ mvn versions:set -DnewVersion=1.6.2
+ mvn versions:update-properties -DnewVersion=1.6.2
+ mvn versions:commit
+////
+
+
+== Upgrade to new Foundation Version
+
+See https://github.com/zurb/foundation-sites-template//bower.json
+for foundation sites and motion-ui version. These numbers go into
+pom.xml bower.foundation-sites.version and bower.motion-ui.version.
+
+Get latest Node Version:
+
+ https://nodejs.org/en/
+
+Get latest npm version:
+
+https://github.com/npm/npm
+
+Get latest frontend-maven-plugin version.
+
+Edit this in pom.xml.
+
+Remove sources:
+
+ mvn -P ZapResources clean
+
+Install
+
+ mvn install
+
+Note that for 6.2.0 
+./streichelzoo-sass-foundation/src/main/resources/bower_components/foundation-sites/.babelrc
+had to be patched to this:
+
+----
+{
+	"plugins": [
+  	"transform-es2015-arrow-functions",
+  	"transform-es2015-block-scoped-functions",
+  	"transform-es2015-block-scoping",
+  	"transform-es2015-classes",
+  	"transform-es2015-destructuring",
+  	"transform-es2015-template-literals",
+  	"transform-es2015-parameters",
+		"transform-es2015-shorthand-properties",
+  	"transform-es2015-spread",
+    ["transform-es2015-modules-commonjs", {
+      "allowTopLevelThis": true
+    }]
+  ],
+  "compact": false
+}
+----
+
+
+

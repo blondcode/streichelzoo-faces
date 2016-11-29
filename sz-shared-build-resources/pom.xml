@@ -1,0 +1,289 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>de.katerkamp.streichelzoo</groupId>
+		<artifactId>project</artifactId>
+		<version>6.2.4.1-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<groupId>de.katerkamp.streichelzoo</groupId>
+	<artifactId>sz-shared-build-resources</artifactId>
+	<packaging>jar</packaging>
+	<name>Streichelzoo Shared Build Resources</name>
+	<description>
+		This module downloads Foundation-Sites plus some additional packages
+		from Github. It then installs package specific npm and downloads
+		all foundation-sites npm package dependencies.
+		This provides Sass and JS sources and the build system for them.
+		This all will be packaged into a maven Maven remote resource bundle.
+		The downloaded resources will not be removed on cleans.  To remove all,
+		run mvn -P ZapResources clean.
+	</description>
+	<url>http://katerkamp.de/streichelzoo</url>
+
+	<properties>
+		<foundation.version>v6.2.4</foundation.version>
+		<foundation.version.type>tag</foundation.version.type>
+		<foundation.connection.url>${githuburi}/zurb/foundation-sites.git</foundation.connection.url>
+
+		<motion-ui.version>v1.2.2</motion-ui.version>
+		<motion-ui.version.type>tag</motion-ui.version.type>
+		<motion-ui.connection.url>${githuburi}/zurb/motion-ui.git</motion-ui.connection.url>
+		
+		<modernizr.version>v3.3.1</modernizr.version>
+		<modernizr.version.type>tag</modernizr.version.type>
+		<modernizr.connection.url>${githuburi}/Modernizr/modernizr.git</modernizr.connection.url>
+
+		<jquery.version>3.1.1</jquery.version>
+		<jquery.version.type>tag</jquery.version.type>
+		<jquery.connection.url>${githuburi}/jquery/jquery.git</jquery.connection.url>
+
+		<normalize.version>5.0.0</normalize.version>
+		<normalize.version.type>tag</normalize.version.type>
+		<normalize.connection.url>${githuburi}/necolas/normalize.css.git</normalize.connection.url>
+
+		<what-input.version>v4.0.3</what-input.version>
+		<what-input.version.type>tag</what-input.version.type>
+		<what-input.connection.url>${githuburi}/ten1seven/what-input.git</what-input.connection.url>
+	</properties>
+
+	<!-- 
+	Default Lifecycle:
+	generate-sources > process-sources >  generate-resources > 
+	process-resources > compile
+	-->
+
+	<build>
+		<plugins>
+
+			<!-- Step 0: download remote sources we need from github, may
+			be redundant to whats get downloaded by foundation-sites package.json,
+			but this is whats under control -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-scm-plugin</artifactId>
+				<version>1.9.4</version>
+				<executions>
+					<execution>
+						<id>clone-foundation</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>checkout</goal>
+						</goals>
+						<configuration>
+							<checkoutDirectory>${basedir}/src/main/resources/foundation-sites</checkoutDirectory>
+							<connectionUrl>${foundation.connection.url}</connectionUrl>
+							<scmVersion>${foundation.version}</scmVersion>
+							<scmVersionType>${foundation.version.type}</scmVersionType>
+							<skipCheckoutIfExists>true</skipCheckoutIfExists>
+							<excludes>.git</excludes>
+						</configuration>
+					</execution>
+					<execution>
+						<id>clone-motion-ui</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>checkout</goal>
+						</goals>
+						<configuration>
+							<checkoutDirectory>${basedir}/src/main/resources/motion-ui</checkoutDirectory>
+							<connectionUrl>${motion-ui.connection.url}</connectionUrl>
+							<scmVersion>${motion-ui.version}</scmVersion>
+							<scmVersionType>${motion-ui.version.type}</scmVersionType>
+							<skipCheckoutIfExists>true</skipCheckoutIfExists>
+							<excludes>.git</excludes>
+						</configuration>
+					</execution>
+					<execution>
+						<id>clone-modernizr</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>checkout</goal>
+						</goals>
+						<configuration>
+							<checkoutDirectory>${basedir}/src/main/resources/modernizr</checkoutDirectory>
+							<connectionUrl>${modernizr.connection.url}</connectionUrl>
+							<scmVersion>${modernizr.version}</scmVersion>
+							<scmVersionType>${modernizr.version.type}</scmVersionType>
+							<skipCheckoutIfExists>true</skipCheckoutIfExists>
+							<excludes>.git</excludes>
+						</configuration>
+					</execution>
+					<execution>
+						<id>clone-jquery</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>checkout</goal>
+						</goals>
+						<configuration>
+							<checkoutDirectory>${basedir}/src/main/resources/jquery</checkoutDirectory>
+							<connectionUrl>${jquery.connection.url}</connectionUrl>
+							<scmVersion>${jquery.version}</scmVersion>
+							<scmVersionType>${jquery.version.type}</scmVersionType>
+							<skipCheckoutIfExists>true</skipCheckoutIfExists>
+							<excludes>.git</excludes>
+						</configuration>
+					</execution>
+					<execution>
+						<id>clone-normalize</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>checkout</goal>
+						</goals>
+						<configuration>
+							<checkoutDirectory>${basedir}/src/main/resources/normalize</checkoutDirectory>
+							<connectionUrl>${normalize.connection.url}</connectionUrl>
+							<scmVersion>${normalize.version}</scmVersion>
+							<scmVersionType>${normalize.version.type}</scmVersionType>
+							<skipCheckoutIfExists>true</skipCheckoutIfExists>
+							<excludes>.git</excludes>
+						</configuration>
+					</execution>
+					<execution>
+						<id>clone-what-input</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>checkout</goal>
+						</goals>
+						<configuration>
+							<checkoutDirectory>${basedir}/src/main/resources/what-input</checkoutDirectory>
+							<connectionUrl>${what-input.connection.url}</connectionUrl>
+							<scmVersion>${what-input.version}</scmVersion>
+							<scmVersionType>${what-input.version.type}</scmVersionType>
+							<skipCheckoutIfExists>true</skipCheckoutIfExists>
+							<excludes>.git</excludes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>1.2</version>
+
+				<configuration>
+					<workingDirectory>${basedir}/src/main/resources</workingDirectory>
+				</configuration>
+				<executions>
+					<!-- Install Step 2: install JavaScript Tools to 
+					src/main/resources/node
+					check versions: node -v, npm -v
+ 					-->
+					<execution>
+						<id>install node and npm</id>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+						<phase>generate-resources</phase>
+						<configuration>
+							<!-- see frontend-maven-plugin docs for these numbers -->
+							<nodeVersion>v5.12.0</nodeVersion>
+							<npmVersion>3.8.6</npmVersion>
+						</configuration>
+					</execution>
+					<!-- Install Step 3: run node package manager according
+					to package.json to src/main/resources/node_modules -->
+					<execution>
+						<id>npm install</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<phase>generate-resources</phase>
+						<configuration>
+							<arguments>install</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<!-- Step 1: copy foundation-sites package.json
+					to resources dir so frontend-maven-plugin can use it.
+					This will cause many modules to be downloaded. Alternative
+					is to use custom package.json from src/etc.
+					 -->
+					<execution>
+						<id>copy-frontend-configs</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/src/main/resources/</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${basedir}/src/main/resources/foundation-sites/</directory>
+									<!-- alternative
+									<directory>${basedir}/src/main/etc/</directory>
+									-->
+									<filtering>true</filtering>
+									<includes>
+										<include>package.json</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-remote-resources-plugin</artifactId>
+				<version>1.5</version>
+				<!-- Install Step 4: create bundle from src/main/resources for 
+				use in theme module -->
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>bundle</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<includes>
+						<include>**/*</include>
+					</includes>
+					<excludes>
+						<exclude>package.json</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+			</plugin>
+			
+		</plugins>
+	</build>
+	
+	<profiles>
+		<profile>
+			<id>ZapResources</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-clean-plugin</artifactId>
+						<configuration>
+							<filesets>
+								<fileset>
+									<directory>${basedir}/src/main/resources</directory>
+									<followSymlinks>false</followSymlinks>
+								</fileset>
+							</filesets>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>

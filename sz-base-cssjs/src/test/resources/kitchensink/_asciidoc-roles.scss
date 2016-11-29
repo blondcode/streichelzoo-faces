@@ -1,0 +1,38 @@
+
+/**
+// AsciiDoc built-in roles
+@if $include-asciidoc-role-classes {
+  div.unbreakable {
+    page-break-inside: avoid;
+  }
+
+  .big {
+    font-size: larger;
+  }
+  
+  .small {
+    font-size: smaller;
+  }
+
+  @each $decoration in (underline, overline, line-through) {
+    .#{$decoration} {
+      text-decoration: $decoration;
+    }
+  }
+
+  // colors must be quoted or else they may get converted to hex in compression output mode
+  @each $color in ('aqua', 'black', 'blue', 'fuchsia', 'gray', 'green', 'lime', 'maroon', 'navy', 'olive', 'purple', 'red', 'silver', 'teal', 'white', 'yellow') {
+    .#{$color} {
+      color: scale-color(string-to-color($color), $lightness: $rainbow-lightness);
+    }
+  
+    .#{$color}-background {
+      background-color: scale-color(string-to-color($color), $lightness: $rainbow-bg-lightness);
+    }
+  }
+
+  //*:not(code) > .comment {
+  //  background: yellow;
+  //}
+}
+*/

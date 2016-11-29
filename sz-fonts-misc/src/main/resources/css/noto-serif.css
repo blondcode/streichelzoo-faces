@@ -1,0 +1,23 @@
+
+@font-face {
+        font-family: 'Noto Serif';
+        font-style:  normal;
+        font-weight: 400;
+        src: url("#{resource['streichelzoo:fonts/NotoSerif/NotoSerif.eot']}");
+        src: url("#{resource['streichelzoo:fonts/NotoSerif/NotoSerif.eot']}?#iefix") format('embedded-opentype'),
+             url("#{resource['streichelzoo:fonts/NotoSerif/NotoSerif.woff']}") format('woff'),
+             url("#{resource['streichelzoo:fonts/NotoSerif/NotoSerif.ttf']}") format('truetype'),
+             url("#{resource['streichelzoo:fonts/NotoSerif/NotoSerif.svg']}#NotoSerif") format('svg');
+}
+
+@font-face {
+        font-family: 'Noto Serif';
+        font-style:  normal;
+        font-weight: 700;
+        src: url("#{resource['streichelzoo:fonts/NotoSerif/NotoSerif-Bold.eot']}");
+        src: url("#{resource['streichelzoo:fonts/NotoSerif/NotoSerif-Bold.eot']}?#iefix") format('embedded-opentype'),
+             url("#{resource['streichelzoo:fonts/NotoSerif/NotoSerif-Bold.woff']}") format('woff'),
+             url("#{resource['streichelzoo:fonts/NotoSerif/NotoSerif-Bold.ttf']}") format('truetype'),
+             url("#{resource['streichelzoo:fonts/NotoSerif/NotoSerif-Bold.svg']}#NotoSerif") format('svg');
+}
+

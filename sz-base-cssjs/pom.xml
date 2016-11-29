@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>de.katerkamp.streichelzoo</groupId>
+		<artifactId>project</artifactId>
+		<version>6.2.4.1-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<groupId>de.katerkamp.streichelzoo</groupId>
+	<artifactId>sz-base-cssjs</artifactId>
+	<packaging>jar</packaging>
+	<name>Streichelzoo Base CSS JS</name>
+	<!-- todo rename this to streichelzoo-styles -->
+	<description>
+		This modules creates CSS and JS from shared resources, for
+		use with JSF projects.
+		Compilation is all done with gulp which gets provided
+		by an artifact.
+		Rules are stored in gulpfile.js.
+		This module assembles a JSF web jar library with a default theme,
+		consisting of CSS and JS, as well as some icons.
+		It takes Sass files from streichelzoo-faces shared resources and 
+		compiles resulting CSS from it. Same for JS. 
+		In development mode CSS and JS is uncompressed,
+		in production mode it will be compressed.
+	</description>
+	<url>http://katerkamp.de/streichelzoo</url>
+
+	<properties>
+		<shres.dir>${project.build.directory}/maven-shared-archive-resources</shres.dir>
+		<gulp.src>${basedir}/src/main/resources/scss/**/*.scss</gulp.src>
+		<gulp.dest>${project.build.directory}/assets/css</gulp.dest>
+	</properties>
+
+	<build>
+		<plugins>
+			<!-- mvn remote-resources:process -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-remote-resources-plugin</artifactId>
+				<version>1.5</version>
+				<configuration>
+					<resourceBundles>
+						<resourceBundle>de.katerkamp.streichelzoo:szoo-shared-build-resources:${project.version}</resourceBundle>
+					</resourceBundles>
+					<attachToTest>false</attachToTest>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>process</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- mvn generate-resources antrun:run -->
+			<!-- fix to set execute permissions, see https://issues.apache.org/jira/browse/MRESOURCES-132 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>process-test-classes</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<chmod file="${project.build.directory}/classes/node/node" perm="755" />
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- process sass and js according to gulpfile.js -->
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>1.2</version>
+				<configuration>
+					<workingDirectory>${project.build.directory}/classes</workingDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<id>gulp sass</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>gulp</goal>
+						</goals>
+						<configuration>
+							<arguments>default</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- now all css and js is in target/assets -->
+			<!-- copy and optinally compress css and js -->
+			<!-- todo make library streichelzoo configurable for archetype -->
+			<!-- webjar to be included in webapp -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<includes>
+						<include>META-INF/**/*</include>
+						<include>bundles/**/*</include>
+						<include>streichelzoo/**/*</include>
+					</includes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<!-- this is not really needed -->
+		<profile>
+			<id>create-archetype</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-archetype-plugin</artifactId>
+						<version>2.4</version>	
+						<executions>
+							<execution>
+								<id>create archetype</id>
+								<phase>package</phase>
+								<goals>
+									<goal>create-from-project</goal>
+								</goals>
+								<configuration>
+									<propertyFile>${basedir}/archetype.properties</propertyFile>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin> 
+					<!-- install archetype jar in repo -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-install-plugin</artifactId>
+						<version>2.5.2</version>
+						<executions>
+							<execution>
+								<id>install archetype</id>
+								<phase>package</phase>
+								<goals>
+									<goal>install-file</goal>
+								</goals>
+								<configuration>
+									<file>${project.build.directory}/generated-sources/archetype/target/${project.artifactId}-archetype-${project.version}.jar</file>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}-archetype</artifactId>
+									<version>${project.version}</version>
+									<packaging>jar</packaging>
+									<pomFile>${project.build.directory}/generated-sources/archetype/pom.xml</pomFile>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<dependency>
+			<groupId>de.katerkamp.streichelzoo</groupId>
+			<artifactId>szoo-shared-build-resources</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+	
+</project>
