@@ -1,8 +1,8 @@
 = Streichelzoo-Faces: Create Style Libraries for JSF2.2 Webapps
 
 This project assembles Maven artifacts which provide styles and fonts as libraries
-for JSF2.2 webapps. Webapp content can be convieniently separated from themes this
-may. Foundation 6 gets downloaded and used as the base. It gets compiled from
+for JSF2.2 webapps. Webapp content can be conveniently separated from themes this
+way. Foundation 6 gets downloaded and used as the base. It gets compiled from
 Sass source, which allows for easy customization. Additionaly, asciidoc html
 classes are provided.
 
